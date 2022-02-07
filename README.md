@@ -10,6 +10,10 @@
 
 ***
 
+### 개발 소요 기간 
+> 2022 / 02 / 01 ~ 현재 진행중 
+
+
 ###  프로그램 이름 
 > 😇 사실 아직 정한게 없다.. 뭔가 삘 꽂히는게 없음ㅠ (고민중)
 
@@ -29,10 +33,11 @@
 - 꼬북이
     - 거북목의 거북이 단어를 이용
 
-***
+
 ### 프로그램 주요 기능 
 
 > 📌 주요 기능 
+<div align ="center">
 <table>
   <tr>
 <td> 
@@ -60,13 +65,16 @@
       5. 다크 모드 지원 <br>
     </td>
     </table>
+</div>
 
-***
 ### 프로젝트 작업 사이트 
 <div align ="center"> 
 <a href="https://thelight0804.notion.site/Python-Project-8b62c4996c7949fdb76744557e083546" target="Notion"><img src="https://img.shields.io/badge/Notion-000000?style=flat-square&logo=Notion&logoColor=white"/></a>
   </div>
+  
 ***
+
 ### 개발자 
-> 1. thelight0804
-> 2.  <a href="https://github.com/Nifskor">Nifskor (ING's)</a> 
+> 1. <a href="https://github.com/thelight0804">thelight0804 </a>
+
+> 2. <a href="https://github.com/Nifskor">Nifskor (ING's)</a> 
