@@ -14,15 +14,17 @@
 > 📌 기능 
 <table>
   <tr>
-<td> </td>
-
-<td> </td>
-    </table>
 > * 타이머 
+<td> 
 > 1. 사용자 시간 입력 
 > 2. 정가 기준 시작 
 > 3. 일시정지 
 > 4. 초기화 
+    </td>
+
+<td> </td>
+    </table>
+
 
 <a href="https://thelight0804.notion.site/Python-Project-8b62c4996c7949fdb76744557e083546" target="Notion"><img src="https://img.shields.io/badge/Notion-000000?style=flat-square&logo=Notion&logoColor=white"/></a>
 
