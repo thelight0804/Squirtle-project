@@ -66,4 +66,7 @@
 <div align ="center"> 
 <a href="https://thelight0804.notion.site/Python-Project-8b62c4996c7949fdb76744557e083546" target="Notion"><img src="https://img.shields.io/badge/Notion-000000?style=flat-square&logo=Notion&logoColor=white"/></a>
   </div>
-
+***
+### 개발자 
+> 1. thelight0804
+> 2. Nifskor (ING's) <a href="https://github.com/Nifskor"></a> 
