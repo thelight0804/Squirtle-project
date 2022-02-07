@@ -69,4 +69,4 @@
 ***
 ### 개발자 
 > 1. thelight0804
-> 2. Nifskor (ING's) <a href="https://github.com/Nifskor"></a> 
+> 2.  <a href="https://github.com/Nifskor">Nifskor (ING's)</a> 
