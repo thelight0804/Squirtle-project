@@ -1,5 +1,11 @@
 # <div align ="center"> 🐢꼬부기 프로젝트🐢 </div>
 
+### 프로젝트 작업 사이트 
+<div align ="center"> 
+<a href="https://thelight0804.notion.site/Python-Project-8b62c4996c7949fdb76744557e083546" target="Notion"><img src="https://img.shields.io/badge/Notion-000000?style=flat-square&logo=Notion&logoColor=white"/></a>
+  </div>
+ 
+
 ### 목적 
 > 📌 **컴퓨터 작업 중 허리 건강을 위해 시간마다 알려주는 프로그램**
 <br>
@@ -67,13 +73,11 @@
     </table>
 </div>
 
-### 프로젝트 작업 사이트 
-<div align ="center"> 
-<a href="https://thelight0804.notion.site/Python-Project-8b62c4996c7949fdb76744557e083546" target="Notion"><img src="https://img.shields.io/badge/Notion-000000?style=flat-square&logo=Notion&logoColor=white"/></a>
-  </div>
   
-***
-
+### 완료후 예상도
+<div align = "center"> 
+<img alt ="" src ="https://user-images.githubusercontent.com/92977647/152747704-a6f01dda-6e9e-49b1-bd8f-485448332515.png" width="480"></div>
+                                                                                                                             
 ### 개발자 
 > 1. <a href="https://github.com/thelight0804">thelight0804 </a>
 
