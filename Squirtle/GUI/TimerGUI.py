@@ -7,30 +7,30 @@ from PyQt5 import QtGui, QtCore
 from PyQt5.QtGui import QFont
 from PyQt5.QtCore import *
 
+class TimerGUI(QWidget): #클래스
+    def __init__(self): #생성자
+        hour = 0
+        min = 0
 
-
-class MyApp(QWidget):
-    def __init__(self):
         super().__init__()
-        self.initUI()
-
-    def initUI(self):
         self.setWindowTitle('Squirtle') #프로그램 이름
         font = QFont('나눔고딕', 15) #폰트 설정
         self.setFont(font)
         self.resize(1080, 720) #창 사이즈
+        self.init_UI()
 
+    def init_UI(self):
         ##버튼 구현
         #환경설정 버튼
         ConfigBtn = QPushButton('', self) #ConfigBtn 버튼 구현
-        ConfigBtn.setIcon(QtGui.QIcon('..\..\Assets\icon\config.svg')) #아이콘 구현 (상대경로)
+        ConfigBtn.setIcon(QtGui.QIcon('..\Assets\icon\config.svg')) #아이콘 구현 (상대경로)
         ConfigBtn.setIconSize(QtCore.QSize(50,50)) #아이콘 크기
         ConfigBtn.setFlat(True) #버튼 테두리 없애기
         ConfigBtn.clicked.connect(self.ConfigBtnClicked) #버튼 클릭 했을 때 ConfigBtn_clicked 함수 호출
 
         #Reset 버튼
         ResetBtn = QPushButton('', self)
-        ResetBtn.setIcon(QtGui.QIcon('..\..\Assets\icon\\reset.svg')) #\r은 옵션이라 \\r를 사용하였다
+        ResetBtn.setIcon(QtGui.QIcon('..\Assets\icon\\reset.svg')) #\r은 옵션이라 \\r를 사용하였다
         ResetBtn.setIconSize(QtCore.QSize(50,50))
         ResetBtn.setFlat(True)
 
@@ -39,24 +39,25 @@ class MyApp(QWidget):
         ChangeBtn.setIconSize(QtCore.QSize(50,50))
 
         #Start 버튼
-        self.StartBtn = QPushButton('', self)
-        self.StartBtn.setIcon(QtGui.QIcon('..\..\Assets\icon\start.svg'))
-        self.StartBtn.setIconSize(QtCore.QSize(50,50))
-        self.StartBtn.setFlat(True)
+        StartBtn = QPushButton('', self)
+        StartBtn.setIcon(QtGui.QIcon('..\Assets\icon\start.svg'))
+        StartBtn.setIconSize(QtCore.QSize(50,50))
+        StartBtn.setFlat(True)
+        StartBtn.clicked.connect(self.StartBtnCliked)
 
         ##ComboBox 구현
-        HCombo = QComboBox(self) #시
-        MCombo = QComboBox(self) #분
-        for i in range(1, 13): #Hour 시간 추가
+        self.Hcombo = QComboBox(self) #시
+        self.MCombo = QComboBox(self) #분
+        for i in range(0, 13): #Hour 시간 추가
             if i<10: #1의 자리 '0' 추가
-                HCombo.addItem('0'+str(i))
+                self.Hcombo.addItem('0'+str(i))
             else:
-                HCombo.addItem(str(i))
+                self.Hcombo.addItem(str(i))
         for i in range(0, 12): #Min 시간 추가
             if i<2:
-                MCombo.addItem('0'+str(i*5))
+                self.MCombo.addItem('0'+str(i*5))
             else:
-                MCombo.addItem(str(i*5))
+                self.MCombo.addItem(str(i*5))
 
         ##QLable 구현
         label = QLabel(':', self)
@@ -75,9 +76,9 @@ class MyApp(QWidget):
         
         hboxMid = QHBoxLayout() #ComboBox 레이아웃
         hboxMid.setContentsMargins(450, 0, 450, 0) #Left, Up, Right, Down
-        hboxMid.addWidget(HCombo)
+        hboxMid.addWidget(self.Hcombo)
         hboxMid.addWidget(label)
-        hboxMid.addWidget(MCombo)
+        hboxMid.addWidget(self.MCombo)
         hboxMid.addWidget(self.TimerBar)
 
         hboxDown = QHBoxLayout() #초기와, 타이머변경, 시작 레이아웃
@@ -86,7 +87,7 @@ class MyApp(QWidget):
         hboxDown.addStretch(1)
         hboxDown.addWidget(ChangeBtn)
         hboxDown.addStretch(1)
-        hboxDown.addWidget(self.StartBtn)
+        hboxDown.addWidget(StartBtn)
         hboxDown.addStretch(10)
         
         #수직
@@ -105,9 +106,12 @@ class MyApp(QWidget):
         self.show() #창 출력
 
     def ConfigBtnClicked(self): #Config 버튼 클릭
-        QMessageBox.about(self, 'MessageBox', '클릭!') #QMessageBox 메세지 박스
+        QMessageBox.about(self, 'hour', self.hour) #QMessageBox 메세지 박스
 
-
+    def StartBtnCliked(self): #Start 버튼 클릭
+        self.hour = self.Hcombo.currentText()
+        self.Min = self.MCombo.currentText()
+        
     def timerEvent(self, e): #타이머 이벤트
         if self.step >= 100:
             self.timer.stop()
@@ -123,8 +127,6 @@ class MyApp(QWidget):
         qr.moveCenter(cp) #창을 cp로 이동한다
         self.move(qr.topLeft())
 
-
-if __name__ == '__main__':
-   app = QApplication(sys.argv)
-   ex = MyApp()
-   sys.exit(app.exec_())
+app = QApplication(sys.argv)
+ex = TimerGUI()
+sys.exit(app.exec_())
