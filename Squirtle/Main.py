@@ -5,17 +5,18 @@ Title : Squirtle (꼬부기)
 @thelight0804
 @ING'S (Nifskor)
 """
-
 #프로그램 실행 시 가장 처음 실행되는 코드
 import Timer
 import sys
 
-class Main:
-    def __init__(self): #생성자
-        self.Main = Timer.Timer()
-        #self.Main = Timer 오류 : import Timer를 통해 Timer가 모듈로 인식되기 때문!
+# class Main:
+#     def __init__(self): #생성자
+#         pass
+#         #self.Main = Timer.Timer()
+#         #self.Main = Timer 오류 : import Timer를 통해 Timer가 모듈로 인식되기 때문!
     
-    def Exit(self):
-        sys.SystemExit()
+def ExitProgram(self):
+    sys.SystemExit()
 
-start = Main()
+if __name__ == "__main__":
+    Timer

@@ -9,8 +9,8 @@ from PyQt5.QtCore import *
 
 class TimerGUI(QWidget): #클래스
     def __init__(self): #생성자
-        hour = 0
-        min = 0
+        self.Hour = 00
+        self.Min = 00
 
         super().__init__()
         self.setWindowTitle('Squirtle') #프로그램 이름
@@ -106,11 +106,14 @@ class TimerGUI(QWidget): #클래스
         self.show() #창 출력
 
     def ConfigBtnClicked(self): #Config 버튼 클릭
-        QMessageBox.about(self, 'hour', self.hour) #QMessageBox 메세지 박스
+        self.Hour = self.Hcombo.currentText()
+        self.Min = self.MCombo.currentText()
+        QMessageBox.about(self, 'hour', self.Hour+" : "+self.Min)
 
     def StartBtnCliked(self): #Start 버튼 클릭
-        self.hour = self.Hcombo.currentText()
+        self.Hour = self.Hcombo.currentText()
         self.Min = self.MCombo.currentText()
+        QMessageBox.about(self, 'hour', self.Hour+" : "+self.Min)
         
     def timerEvent(self, e): #타이머 이벤트
         if self.step >= 100:
@@ -126,7 +129,3 @@ class TimerGUI(QWidget): #클래스
         cp = QDesktopWidget().availableGeometry().center() #현재 모니터의 위치를 파악한다
         qr.moveCenter(cp) #창을 cp로 이동한다
         self.move(qr.topLeft())
-
-app = QApplication(sys.argv)
-ex = TimerGUI()
-sys.exit(app.exec_())
