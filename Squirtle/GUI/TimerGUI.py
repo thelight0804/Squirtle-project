@@ -2,6 +2,8 @@
 #박스 레이아웃 사용 (https://wikidocs.net/21945 참조)
 
 import sys
+import Timer
+
 from PyQt5.QtWidgets import *
 from PyQt5 import QtGui, QtCore
 from PyQt5.QtGui import QFont
@@ -111,9 +113,9 @@ class TimerGUI(QWidget): #클래스
         QMessageBox.about(self, 'hour', self.Hour+" : "+self.Min)
 
     def StartBtnCliked(self): #Start 버튼 클릭
-        self.Hour = self.Hcombo.currentText()
-        self.Min = self.MCombo.currentText()
-        QMessageBox.about(self, 'hour', self.Hour+" : "+self.Min)
+        self.Hour = int(self.Hcombo.currentText())
+        self.Min = int(self.MCombo.currentText())
+        Timer.StartTimer(self.Hour, self.Min) #Timer.StartTimer 호출
         
     def timerEvent(self, e): #타이머 이벤트
         if self.step >= 100:

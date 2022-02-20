@@ -2,13 +2,16 @@
 from PyQt5.QtWidgets import *
 from GUI import TimerGUI
 import sys
+import time
+import threading #threading 모듈
 
 class Timer:
-    def __init__(self, NowRunning, NowPause, Hour, Min, Percent):
+    def __init__(self, NowRunning, NowPause, Hour, Min, Sec, Percent):
         self._NowRunning = NowRunning # _ = protected # 타이머 진행 상태를 확인
         self._NowPause = NowPause # 일시정지 상태를 확인
         self._Hour = Hour #시간
         self._Min = Min #분
+        self._Sec = Sec
         self.__Percent = Percent #__ = private #타이머 진행률
     
     @property #getter
@@ -28,6 +31,10 @@ class Timer:
         return self._Min
 
     @property
+    def Sec(self):
+        return self._Sec
+
+    @property
     def Percent(self):
         return self.__Percent
     
@@ -37,20 +44,45 @@ class Timer:
             raise ValueError("Invalid NowRunning")
         self._NowRunning = NowRunning
 
-    @Hour.setter #setter
+    @Hour.setter
     def Hour(self, Hour):
         if type(Hour) is not int:
             raise ValueError("Invalid Hour")
         self._Hour = Hour
 
-timer = Timer(False, False, 0, 0, 0.0)
+    @Min.setter
+    def Min(self, Min):
+        if type(Min) is not int:
+            raise ValueError("Invalid Min")
+        self._Min = Min
+
+    @Sec.setter
+    def Sec(self, Sec):
+        if type(Sec) is not int:
+            raise ValueError("Invalid Sec")
+        self._Sec = Sec
+
+    def CountDown(self): #카운트 다운
+        self._Min += -1
+        self._Hour += -1
+        while self._Hour != 0 or self._Min != 0 or self._Sec != 0:
+            time.sleep(0.01)
+            if self._Sec != 0:
+                self._Sec += -1
+                if self._Sec % 60 == 0 and self._Min > 0:
+                    self._Min += -1
+            if self._Min == 0 and self._Hour >0:
+                self._Hour += -1
+            print(self._Hour, ":", self._Min, ":", self._Sec)
+        if self._Hour == 0 or self._Min == 0 or self._Sec == 0:
+            self._NowRunning = False
+
+
+def StartTimer(hour, min): #TODO: timer를 하나만 생성하게 제한하기
+    timer = Timer(True, False, hour, min, min*60, 0.0)
+    thr1 = threading.Thread(target=timer.CountDown).start()
 
 #TimerGUI 연결
 app = QApplication(sys.argv)
 gui = TimerGUI.TimerGUI()
 app.exec()
-
-#gui.Hour의 값 가져오기
-#하 됐다ㅠㅠㅠㅠ
-timer.Hour = int(gui.Hour)
-print(timer.Hour)
