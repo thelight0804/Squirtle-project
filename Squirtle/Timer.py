@@ -5,6 +5,10 @@ import sys
 import time
 import threading #threading 모듈
 
+global CreateTimer
+CreateTimer = False #타이머 객체 생성 여부
+print(id(CreateTimer))
+
 class Timer:
     def __init__(self, NowRunning, NowPause, Hour, Min, Sec, Percent):
         self._NowRunning = NowRunning # _ = protected # 타이머 진행 상태를 확인
@@ -64,7 +68,10 @@ class Timer:
 
     def CountDown(self): #카운트 다운
         self._Min += -1
-        self._Hour += -1
+        if self._Hour == 0:
+            pass
+        else:
+            self._Hour += -1
         while self._Hour != 0 or self._Min != 0 or self._Sec != 0:
             time.sleep(0.01)
             if self._Sec != 0:
@@ -77,8 +84,9 @@ class Timer:
         if self._Hour == 0 or self._Min == 0 or self._Sec == 0:
             self._NowRunning = False
 
-
 def StartTimer(hour, min): #TODO: timer를 하나만 생성하게 제한하기
+    CreateTimer = True
+    print(id(Timer.CreateTimer))
     timer = Timer(True, False, hour, min, min*60, 0.0)
     thr1 = threading.Thread(target=timer.CountDown).start()
 
