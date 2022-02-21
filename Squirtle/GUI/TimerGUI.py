@@ -62,8 +62,13 @@ class TimerGUI(QWidget): #클래스
                 self.MCombo.addItem(str(i*5))
 
         ##QLable 구현
-        label = QLabel(':', self)
-        label.setAlignment(Qt.AlignCenter)
+        self.MarkLabel = QLabel(':', self)
+        self.MarkLabel.setAlignment(Qt.AlignCenter)
+        self.HLabel = QLabel('00', self) #시간
+        self.HLabel.setAlignment(Qt.AlignCenter)
+        self.MLabel = QLabel('00', self) #분
+        self.MLabel.setAlignment(Qt.AlignCenter)
+        
 
         ##상태바 구현
         self.TimerBar = QProgressBar() #TODO: 원형 바 어떻게 해야 할까..ㅠ
@@ -79,9 +84,16 @@ class TimerGUI(QWidget): #클래스
         hboxMid = QHBoxLayout() #ComboBox 레이아웃
         hboxMid.setContentsMargins(450, 0, 450, 0) #Left, Up, Right, Down
         hboxMid.addWidget(self.Hcombo)
-        hboxMid.addWidget(label)
+        hboxMid.addWidget(self.HLabel)
+        hboxMid.addWidget(self.MarkLabel)
         hboxMid.addWidget(self.MCombo)
-        hboxMid.addWidget(self.TimerBar)
+        hboxMid.addWidget(self.MLabel)
+        self.HLabel.hide()
+        self.MLabel.hide()
+
+        hboxBar = QHBoxLayout() #진행바 레이아웃
+        hboxBar.addWidget(self.TimerBar)
+
 
         hboxDown = QHBoxLayout() #초기와, 타이머변경, 시작 레이아웃
         hboxDown.addStretch(10)
@@ -97,6 +109,7 @@ class TimerGUI(QWidget): #클래스
         vbox.addLayout(hboxUp)
         vbox.addStretch(10)
         vbox.addLayout(hboxMid)
+        vbox.addLayout(hboxBar)
         vbox.addStretch(10)        
         vbox.addLayout(hboxDown)
         vbox.setContentsMargins(0, 0, 0, 50)
@@ -111,11 +124,20 @@ class TimerGUI(QWidget): #클래스
         self.Hour = self.Hcombo.currentText()
         self.Min = self.MCombo.currentText()
         QMessageBox.about(self, 'hour', self.Hour+" : "+self.Min)
-
+    
     def StartBtnCliked(self): #Start 버튼 클릭
         self.Hour = int(self.Hcombo.currentText())
         self.Min = int(self.MCombo.currentText())
-        Timer.StartTimer(self.Hour, self.Min) #Timer.StartTimer 호출
+        if self.Hour == 0 and self.Min ==0: # 0:0에서 타이머 시작 방지
+            QMessageBox.about(self, 'Error', '시간을 설정해 주세요')
+        elif Timer.CreateTimer == True: #Timer.CreateTimer의 값이 안 넘어감!!
+            QMessageBox.about(self, 'Error', '타이머가 실행 중 입니다')
+        else:
+            self.Hcombo.hide()
+            self.MCombo.hide()
+            self.HLabel.show()
+            self.MLabel.show()
+            Timer.StartTimer(self.Hour, self.Min) #Timer.StartTimer 호출
         
     def timerEvent(self, e): #타이머 이벤트
         if self.step >= 100:
