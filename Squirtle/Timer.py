@@ -4,10 +4,9 @@ from GUI import TimerGUI
 import sys
 import time
 import threading #threading 모듈
+import math
 
-global CreateTimer
 CreateTimer = False #타이머 객체 생성 여부
-print(id(CreateTimer))
 
 class Timer:
     def __init__(self, NowRunning, NowPause, Hour, Min, Sec, Percent):
@@ -17,6 +16,9 @@ class Timer:
         self._Min = Min #분
         self._Sec = Sec
         self.__Percent = Percent #__ = private #타이머 진행률
+    
+    def __del__(self): #소멸자
+        print("소멸자 실행!")
     
     @property #getter
     def NowRunning(self):
@@ -67,26 +69,32 @@ class Timer:
         self._Sec = Sec
 
     def CountDown(self): #카운트 다운
-        self._Min += -1
-        if self._Hour == 0:
-            pass
-        else:
-            self._Hour += -1
-        while self._Hour != 0 or self._Min != 0 or self._Sec != 0:
+        #모두 초로 더한 다음에 초에서 시, 분으로 분배
+        self._Sec = (self._Hour*3600)+(self._Min*60)
+        while self._Sec > 0:
             time.sleep(0.01)
-            if self._Sec != 0:
-                self._Sec += -1
-                if self._Sec % 60 == 0 and self._Min > 0:
-                    self._Min += -1
-            if self._Min == 0 and self._Hour >0:
-                self._Hour += -1
-            print(self._Hour, ":", self._Min, ":", self._Sec)
-        if self._Hour == 0 or self._Min == 0 or self._Sec == 0:
-            self._NowRunning = False
+            self._Sec += -1
+            self._Hour = int(self._Sec/3600)
+            self._Min = int(self._Sec/60)
+            gui.HLabel.setText(str(self._Hour))
+            gui.MLabel.setText(str(self._Min))
+            gui.SLabel.setText(str(self._Sec))
+            print(self._Hour, ":", self._Min%60, ":", self._Sec%60)
+            #TODO: gui에 반영하기
 
-def StartTimer(hour, min): #TODO: timer를 하나만 생성하게 제한하기
+        self._NowRunning = False
+        global CreateTimer
+        CreateTimer = False
+        del self #timer 소멸 #del timer 에러!
+        # gui.Hcombo.show()
+        # gui.MCombo.show()
+        # gui.HLabel.hide()
+        # gui.MLabel.hide()
+
+
+def StartTimer(hour, min):
+    global CreateTimer #global : 전역변수인 CreateTimer을 사용한다고 선언
     CreateTimer = True
-    print(id(CreateTimer))
     timer = Timer(True, False, hour, min, min*60, 0.0)
     thr1 = threading.Thread(target=timer.CountDown).start()
 
