@@ -13,6 +13,7 @@ class TimerGUI(QWidget): #클래스
     def __init__(self): #생성자
         self.Hour = 00
         self.Min = 00
+        self.Sec = 00
 
         super().__init__()
         self.setWindowTitle('Squirtle') #프로그램 이름
@@ -68,6 +69,8 @@ class TimerGUI(QWidget): #클래스
         self.HLabel.setAlignment(Qt.AlignCenter)
         self.MLabel = QLabel('00', self) #분
         self.MLabel.setAlignment(Qt.AlignCenter)
+        self.SLabel = QLabel('00', self) #분
+        self.SLabel.setAlignment(Qt.AlignCenter)
         
 
         ##상태바 구현
@@ -95,7 +98,7 @@ class TimerGUI(QWidget): #클래스
         hboxBar.addWidget(self.TimerBar)
 
 
-        hboxDown = QHBoxLayout() #초기와, 타이머변경, 시작 레이아웃
+        hboxDown = QHBoxLayout() #초기화, 타이머변경, 시작 레이아웃
         hboxDown.addStretch(10)
         hboxDown.addWidget(ResetBtn)
         hboxDown.addStretch(1)
@@ -130,13 +133,9 @@ class TimerGUI(QWidget): #클래스
         self.Min = int(self.MCombo.currentText())
         if self.Hour == 0 and self.Min ==0: # 0:0에서 타이머 시작 방지
             QMessageBox.about(self, 'Error', '시간을 설정해 주세요')
-        elif Timer.CreateTimer == True: #Timer.CreateTimer의 값이 안 넘어감!!
+        elif Timer.CreateTimer == True:
             QMessageBox.about(self, 'Error', '타이머가 실행 중 입니다')
         else:
-            self.Hcombo.hide()
-            self.MCombo.hide()
-            self.HLabel.show()
-            self.MLabel.show()
             Timer.StartTimer(self.Hour, self.Min) #Timer.StartTimer 호출
         
     def timerEvent(self, e): #타이머 이벤트
