@@ -86,7 +86,7 @@ class Timer:
 
 def StartTimer(hour, min): #TODO: timer를 하나만 생성하게 제한하기
     CreateTimer = True
-    print(id(Timer.CreateTimer))
+    print(id(CreateTimer))
     timer = Timer(True, False, hour, min, min*60, 0.0)
     thr1 = threading.Thread(target=timer.CountDown).start()
 
