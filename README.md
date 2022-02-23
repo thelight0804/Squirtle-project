@@ -1,7 +1,6 @@
 # <div align ="center"> 🐢꼬부기 프로젝트🐢 </div>
 
 ### 프로젝트 작업 사이트 
-<div align ="center"> 
 <a href="https://thelight0804.notion.site/Python-Project-8b62c4996c7949fdb76744557e083546" target="Notion"><img src="https://img.shields.io/badge/Notion-000000?style=flat-square&logo=Notion&logoColor=white"/></a>
   </div>
  
@@ -12,27 +11,11 @@
 
 ### 개발 소요 기간 
 > 2022 / 02 / 01 ~ 현재 진행중 
-
+<br>
 
 ###  프로그램 이름 
-> 😇 사실 아직 정한게 없다.. 뭔가 삘 꽂히는게 없음ㅠ (고민중)
-
-- **Life Disc**
-    - 생활속에서 허리 디스크(Disc)를 항상 생각하자는 뜻에서
-- **Disk Disc** (DD / 디디)
-    - 하드 디스크의 Disk와 허리 디스크의 Disc를 이용한 말장난
-        
-        줄여서 DD로 부를수도 있다!
-        
-
-- ~~**Human Disk Disc** (HDD)~~
-    - 컴퓨터의 하드디스크를 뜻하는 HDD의 약자를 이용한 말장난
-        
-        오히려 HDD의 용어에 혼란이 올 거 같아 취소
-        
-- 꼬북이
-    - 거북목의 거북이 단어를 이용
-
+> **꼬부기 (Squirtle)** 오랫동안 잘못된 자세로 앉아 있으면 허리와 목이 꼬부라진다는 뜻에서 유래하였다.
+<br>
 
 ### 프로그램 주요 기능 
 
