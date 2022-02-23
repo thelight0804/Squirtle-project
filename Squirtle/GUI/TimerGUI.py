@@ -42,20 +42,22 @@ class TimerGUI(QWidget): #클래스
         ChangeBtn.setIconSize(QtCore.QSize(50,50))
 
         #Start 버튼
-        StartBtn = QPushButton('', self)
-        StartBtn.setIcon(QtGui.QIcon('..\Assets\icon\start.svg'))
-        StartBtn.setIconSize(QtCore.QSize(50,50))
-        StartBtn.setFlat(True)
-        StartBtn.clicked.connect(self.StartBtnCliked)
+        self.StartBtn = QPushButton('', self)
+        self.StartBtn.setIcon(QtGui.QIcon('..\Assets\icon\start.svg'))
+        self.StartBtn.setIconSize(QtCore.QSize(50,50))
+        self.StartBtn.setFlat(True)
+        self.StartBtn.clicked.connect(self.StartBtnCliked)
 
         ##ComboBox 구현
-        self.Hcombo = QComboBox(self) #시
+        self.HCombo = QComboBox(self) #시
         self.MCombo = QComboBox(self) #분
+        self.HCombo.setFixedSize(80,50)
+        self.MCombo.setFixedSize(80,50)
         for i in range(0, 13): #Hour 시간 추가
             if i<10: #1의 자리 '0' 추가
-                self.Hcombo.addItem('0'+str(i))
+                self.HCombo.addItem('0'+str(i))
             else:
-                self.Hcombo.addItem(str(i))
+                self.HCombo.addItem(str(i))
         for i in range(0, 12): #Min 시간 추가
             if i<2:
                 self.MCombo.addItem('0'+str(i*5))
@@ -65,12 +67,29 @@ class TimerGUI(QWidget): #클래스
         ##QLable 구현
         self.MarkLabel = QLabel(':', self)
         self.MarkLabel.setAlignment(Qt.AlignCenter)
+        self.LMarkLabel = QLabel(':', self) #왼쪽 ':'
+        self.LMarkLabel.setAlignment(Qt.AlignCenter)
+        self.RMarkLabel = QLabel(':', self) #오른쪽 ':'
+        self.RMarkLabel.setAlignment(Qt.AlignCenter)
         self.HLabel = QLabel('00', self) #시간
         self.HLabel.setAlignment(Qt.AlignCenter)
         self.MLabel = QLabel('00', self) #분
         self.MLabel.setAlignment(Qt.AlignCenter)
-        self.SLabel = QLabel('00', self) #분
+        self.SLabel = QLabel('00', self) #초
         self.SLabel.setAlignment(Qt.AlignCenter)
+
+        ##QLabel 폰트
+        TimerFont = self.HLabel.font()
+
+        TimerFont.setPointSize(50)
+        TimerFont.setBold(True)
+        #TimerFont.setFamilies(self, "Arial")
+
+        self.HLabel.setFont(TimerFont)
+        self.MLabel.setFont(TimerFont)
+        self.SLabel.setFont(TimerFont)
+        self.LMarkLabel.setFont(TimerFont)
+        self.RMarkLabel.setFont(TimerFont)
         
 
         ##상태바 구현
@@ -84,15 +103,22 @@ class TimerGUI(QWidget): #클래스
         hboxUp.addWidget(ConfigBtn) #ConfigBtn 버튼 생성
         hboxUp.addStretch(1) #비율이 1인 빈 공간 생성
         
-        hboxMid = QHBoxLayout() #ComboBox 레이아웃
-        hboxMid.setContentsMargins(450, 0, 450, 0) #Left, Up, Right, Down
-        hboxMid.addWidget(self.Hcombo)
+        hboxMid = QHBoxLayout() #시간 설정 레이아웃
+        hboxMid.addStretch(1)
+        hboxMid.addWidget(self.HCombo)
         hboxMid.addWidget(self.HLabel)
+        hboxMid.addWidget(self.LMarkLabel)
         hboxMid.addWidget(self.MarkLabel)
         hboxMid.addWidget(self.MCombo)
         hboxMid.addWidget(self.MLabel)
+        hboxMid.addWidget(self.RMarkLabel)
+        hboxMid.addWidget(self.SLabel)
+        hboxMid.addStretch(1)
         self.HLabel.hide()
         self.MLabel.hide()
+        self.LMarkLabel.hide()
+        self.RMarkLabel.hide()
+        self.SLabel.hide()
 
         hboxBar = QHBoxLayout() #진행바 레이아웃
         hboxBar.addWidget(self.TimerBar)
@@ -104,7 +130,7 @@ class TimerGUI(QWidget): #클래스
         hboxDown.addStretch(1)
         hboxDown.addWidget(ChangeBtn)
         hboxDown.addStretch(1)
-        hboxDown.addWidget(StartBtn)
+        hboxDown.addWidget(self.StartBtn)
         hboxDown.addStretch(10)
         
         #수직
@@ -124,19 +150,30 @@ class TimerGUI(QWidget): #클래스
         self.show() #창 출력
 
     def ConfigBtnClicked(self): #Config 버튼 클릭
-        self.Hour = self.Hcombo.currentText()
+        self.Hour = self.HCombo.currentText()
         self.Min = self.MCombo.currentText()
         QMessageBox.about(self, 'hour', self.Hour+" : "+self.Min)
     
     def StartBtnCliked(self): #Start 버튼 클릭
-        self.Hour = int(self.Hcombo.currentText())
+        self.Hour = int(self.HCombo.currentText())
         self.Min = int(self.MCombo.currentText())
         if self.Hour == 0 and self.Min ==0: # 0:0에서 타이머 시작 방지
             QMessageBox.about(self, 'Error', '시간을 설정해 주세요')
-        elif Timer.CreateTimer == True:
-            QMessageBox.about(self, 'Error', '타이머가 실행 중 입니다')
-        else:
+        elif Timer.RunTimer == True:
+            Timer.RunTimer = False
+            self.StartBtn.setIcon(QtGui.QIcon('..\Assets\icon\start.svg'))
+        else: #타이머 실행
+            self.HLabel.show()
+            self.MLabel.show()
+            self.LMarkLabel.show()
+            self.RMarkLabel.show()
+            self.SLabel.show()
+            self.HCombo.hide()
+            self.MCombo.hide()
+            self.MarkLabel.hide()
             Timer.StartTimer(self.Hour, self.Min) #Timer.StartTimer 호출
+            self.StartBtn.setIcon(QtGui.QIcon('..\Assets\icon\pause.svg'))
+
         
     def timerEvent(self, e): #타이머 이벤트
         if self.step >= 100:
