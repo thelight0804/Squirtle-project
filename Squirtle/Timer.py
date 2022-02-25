@@ -70,9 +70,11 @@ class Timer:
             if RunTimer == False:
                 PauseTimer(self) #일시정지
                 break #while문을 빠저 나가면 소멸자가 실행된다
-            time.sleep(0.01)
+            time.sleep(0.25)
             Timer._Sec += -1
             TimeUpdate()
+        ResetTimer() #타이머가 끝나면 타이머 종료
+
 
 
 def StartTimer(hour, min):
@@ -86,8 +88,19 @@ def StartTimer(hour, min):
         thr1 = threading.Thread(target=timer.CountDown).start()
 
 
+
 def PauseTimer(self): #일시정지
     TimeUpdate()
+
+def ResetTimer(): #초기화
+    global RunTimer
+    global CreateTimer
+    RunTimer = False
+    CreateTimer = False
+    Timer._Sec = 0
+    TimeUpdate()
+    gui.ShowTimerCombo()
+
 
 def TimeUpdate(): #타이머 데이터를 GUI에 반영
     Timer._Hour = int(Timer._Sec/3600)
