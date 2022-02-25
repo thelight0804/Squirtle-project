@@ -36,6 +36,7 @@ class TimerGUI(QWidget): #클래스
         ResetBtn.setIcon(QtGui.QIcon('..\Assets\icon\\reset.svg')) #\r은 옵션이라 \\r를 사용하였다
         ResetBtn.setIconSize(QtCore.QSize(50,50))
         ResetBtn.setFlat(True)
+        ResetBtn.clicked.connect(self.ResetBtnCliked)
 
         #타이머 변경 버튼
         ChangeBtn = QPushButton('사용자\n타이머', self)
@@ -163,17 +164,35 @@ class TimerGUI(QWidget): #클래스
             Timer.RunTimer = False
             self.StartBtn.setIcon(QtGui.QIcon('..\Assets\icon\start.svg'))
         else: #타이머 실행
-            self.HLabel.show()
-            self.MLabel.show()
-            self.LMarkLabel.show()
-            self.RMarkLabel.show()
-            self.SLabel.show()
-            self.HCombo.hide()
-            self.MCombo.hide()
-            self.MarkLabel.hide()
+            self.ShowTimerLabel()
             Timer.StartTimer(self.Hour, self.Min) #Timer.StartTimer 호출
             self.StartBtn.setIcon(QtGui.QIcon('..\Assets\icon\pause.svg'))
 
+    def ResetBtnCliked(self): #초기화 버튼
+        Timer.ResetTimer()
+        self.ShowTimerCombo()
+    
+    def ShowTimerCombo(self): #시, 분 ComboBox 출력
+        self.HCombo.setCurrentIndex(0) #0번째 index로 설정
+        self.MCombo.setCurrentIndex(0)
+        self.HLabel.hide()
+        self.MLabel.hide()
+        self.LMarkLabel.hide()
+        self.RMarkLabel.hide()
+        self.SLabel.hide()
+        self.HCombo.show()
+        self.MCombo.show()
+        self.MarkLabel.show()
+    
+    def ShowTimerLabel(self): #시, 분 타이머 Label 출력
+        self.HLabel.show()
+        self.MLabel.show()
+        self.LMarkLabel.show()
+        self.RMarkLabel.show()
+        self.SLabel.show()
+        self.HCombo.hide()
+        self.MCombo.hide()
+        self.MarkLabel.hide()
         
     def timerEvent(self, e): #타이머 이벤트
         if self.step >= 100:
