@@ -7,6 +7,7 @@ import Timer
 from PyQt5.QtWidgets import *
 from PyQt5 import QtGui, QtCore
 from PyQt5.QtGui import QFont
+from PyQt5.QtGui import QIcon
 from PyQt5.QtCore import *
 
 class TimerGUI(QWidget): #클래스
@@ -17,6 +18,7 @@ class TimerGUI(QWidget): #클래스
 
         super().__init__()
         self.setWindowTitle('Squirtle') #프로그램 이름
+        self.setWindowIcon(QIcon('..\Assets\icon\Squirtle.ico')) #프로그램 아이콘
         font = QFont('나눔고딕', 15) #폰트 설정
         self.setFont(font)
         self.resize(1080, 720) #창 사이즈

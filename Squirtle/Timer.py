@@ -5,6 +5,7 @@ import sys
 import time
 import threading #threading 모듈
 import math
+import Alarm
 
 RunTimer = False #타이머 객체 실행 여부
 CreateTimer = False #타이머 객체 생성 여부
@@ -58,6 +59,7 @@ class Timer:
         Timer._Sec = Sec
 
     def CountDown(self): #카운트 다운
+        TimeUpdate()
         global RunTimer
         global CreateTimer
         RunTimer = True
@@ -70,14 +72,15 @@ class Timer:
             if RunTimer == False:
                 PauseTimer(self) #일시정지
                 break #while문을 빠저 나가면 소멸자가 실행된다
-            time.sleep(0.25)
+            time.sleep(0.01)
             Timer._Sec += -1
             TimeUpdate()
-        ResetTimer() #타이머가 끝나면 타이머 종료
+        if Timer._Sec == 0:
+            CallAlram()
 
 
 
-def StartTimer(hour, min):
+def StartTimer(hour, min): #Timer 생성
     global RunTimer #global : 전역변수인 RunTimer을 사용한다고 선언
     global CreateTimer
     if CreateTimer == True:
@@ -86,8 +89,6 @@ def StartTimer(hour, min):
     else:
         timer = Timer(hour, min, min*60, 0.0)
         thr1 = threading.Thread(target=timer.CountDown).start()
-
-
 
 def PauseTimer(self): #일시정지
     TimeUpdate()
@@ -101,7 +102,6 @@ def ResetTimer(): #초기화
     TimeUpdate()
     gui.ShowTimerCombo()
 
-
 def TimeUpdate(): #타이머 데이터를 GUI에 반영
     Timer._Hour = int(Timer._Sec/3600)
     Timer._Min = int(Timer._Sec/60)
@@ -111,6 +111,11 @@ def TimeUpdate(): #타이머 데이터를 GUI에 반영
     gui.HLabel.update()
     gui.MLabel.update()
     gui.SLabel.update()
+
+def CallAlram():#알람 객체 생성
+    ResetTimer()
+    alarm = Alarm.alarm(0, 0)
+    alarm.call()
 
 
 #TimerGUI 연결
