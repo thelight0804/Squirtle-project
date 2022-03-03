@@ -18,7 +18,7 @@ class Timer:
     def __init__(self, Hour, Min, Sec, Percent):
         Timer._Hour = Hour #시간
         Timer._Min = Min #분
-        Timer._Sec = Sec
+        Timer._Sec = Sec #초
         self.__Percent = Percent #__ = private #타이머 진행률
     
     def __del__(self): #소멸자
@@ -59,7 +59,6 @@ class Timer:
         Timer._Sec = Sec
 
     def CountDown(self): #카운트 다운
-        TimeUpdate()
         global RunTimer
         global CreateTimer
         RunTimer = True
@@ -67,6 +66,7 @@ class Timer:
         if CreateTimer == False:
             Timer._Sec = (Timer._Hour*3600)+(Timer._Min*60) #모두 초로 더한 다음에 초에서 시, 분으로 분배
             CreateTimer = True
+        TimeUpdate()
 
         while Timer._Sec > 0:
             if RunTimer == False:
@@ -122,5 +122,3 @@ def CallAlram():#알람 객체 생성
 app = QApplication(sys.argv)
 gui = TimerGUI.TimerGUI()
 app.exec()
-
-#TODO: 타이머 종료 시 윈도우 알람까지 가즈아ㅏㅏ!!
