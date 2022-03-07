@@ -71,14 +71,13 @@ class Timer:
         while Timer._Sec > 0:
             if RunTimer == False:
                 PauseTimer(self) #일시정지
-                break #while문을 빠저 나가면 소멸자가 실행된다
-            time.sleep(0.01)
+                break #while문을 빠져 나가면 소멸자가 실행된다
+            time.sleep(0.01) #TODO 시간 조정
             Timer._Sec += -1
             TimeUpdate()
-        if Timer._Sec == 0:
-            CallAlram()
-
-
+            if Timer._Sec == 0:
+                Timer._Sec = (Timer._Hour*3600)+(Timer._Min*60) #시간 재설정으로 타이머 재시작
+                CallAlram() #윈도우10 Toast 알람
 
 def StartTimer(hour, min): #Timer 생성
     global RunTimer #global : 전역변수인 RunTimer을 사용한다고 선언
@@ -103,17 +102,14 @@ def ResetTimer(): #초기화
     gui.ShowTimerCombo()
 
 def TimeUpdate(): #타이머 데이터를 GUI에 반영
-    Timer._Hour = int(Timer._Sec/3600)
-    Timer._Min = int(Timer._Sec/60)
-    gui.HLabel.setText(str(Timer._Hour))
-    gui.MLabel.setText(str(Timer._Min%60))
-    gui.SLabel.setText(str(Timer._Sec%60))
+    gui.HLabel.setText(str(int(Timer._Sec/3600)).zfill(2)) #.zfill : 원하는 개수만큼 '0' 채우기
+    gui.MLabel.setText(str(int(Timer._Sec/60%60)).zfill(2))
+    gui.SLabel.setText(str(Timer._Sec%60).zfill(2))
     gui.HLabel.update()
     gui.MLabel.update()
     gui.SLabel.update()
 
 def CallAlram():#알람 객체 생성
-    ResetTimer()
     alarm = Alarm.alarm(0, 0)
     alarm.call()
 

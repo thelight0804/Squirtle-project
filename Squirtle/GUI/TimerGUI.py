@@ -3,6 +3,7 @@
 
 import sys
 import Timer
+from GUI import ConfigGUI
 
 from PyQt5.QtWidgets import *
 from PyQt5 import QtGui, QtCore
@@ -153,9 +154,11 @@ class TimerGUI(QWidget): #클래스
         self.show() #창 출력
 
     def ConfigBtnClicked(self): #Config 버튼 클릭
-        self.Hour = self.HCombo.currentText()
-        self.Min = self.MCombo.currentText()
-        QMessageBox.about(self, 'hour', self.Hour+" : "+self.Min)
+        ConfigGui = ConfigGUI.ConfigGUI()
+        ConfigGui.setWindowModality(Qt.WindowModal) #모달 방식 지정
+        #ConfigGui.show()
+        # app = QApplication(sys.argv)
+        # gui = ConfigGUI.ConfigGUI()
     
     def StartBtnCliked(self): #Start 버튼 클릭
         self.Hour = int(self.HCombo.currentText())
@@ -175,8 +178,6 @@ class TimerGUI(QWidget): #클래스
         self.ShowTimerCombo()
     
     def ShowTimerCombo(self): #시, 분 ComboBox 출력
-        self.HCombo.setCurrentIndex(0) #0번째 index로 설정
-        self.MCombo.setCurrentIndex(0)
         self.HLabel.hide()
         self.MLabel.hide()
         self.LMarkLabel.hide()
