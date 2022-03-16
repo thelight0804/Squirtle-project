@@ -4,7 +4,6 @@ from GUI import TimerGUI
 import sys
 import time
 import threading #threading 모듈
-import math
 import Alarm
 
 RunTimer = False #타이머 객체 실행 여부
@@ -72,7 +71,7 @@ class Timer:
             if RunTimer == False:
                 PauseTimer(self) #일시정지
                 break #while문을 빠져 나가면 소멸자가 실행된다
-            time.sleep(0.01) #TODO 시간 조정
+            time.sleep(1) #TODO 시간 조정
             Timer._Sec += -1
             TimeUpdate()
             if Timer._Sec == 0:

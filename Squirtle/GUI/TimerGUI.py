@@ -1,9 +1,10 @@
 # cmd에서 pip3 install PyQt5 명령어를 이용하여 PyQt5를 설치해야 한다
 #박스 레이아웃 사용 (https://wikidocs.net/21945 참조)
 
+from operator import truediv
 import sys
 import Timer
-from GUI import ConfigGUI
+from GUI import ConfigGUI #ConfigGUI import
 
 from PyQt5.QtWidgets import *
 from PyQt5 import QtGui, QtCore
@@ -154,11 +155,11 @@ class TimerGUI(QWidget): #클래스
         self.show() #창 출력
 
     def ConfigBtnClicked(self): #Config 버튼 클릭
-        ConfigGui = ConfigGUI.ConfigGUI()
-        ConfigGui.setWindowModality(Qt.WindowModal) #모달 방식 지정
-        #ConfigGui.show()
-        # app = QApplication(sys.argv)
-        # gui = ConfigGUI.ConfigGUI()
+        #second window 열기
+        ConfigDialog = QDialog()
+        ConfigUI = ConfigGUI.ConfigGUI()
+        ConfigUI.setupUi(ConfigDialog)
+        ConfigDialog.exec_()
     
     def StartBtnCliked(self): #Start 버튼 클릭
         self.Hour = int(self.HCombo.currentText())
