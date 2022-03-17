@@ -2,12 +2,13 @@
 from PyQt5.QtWidgets import *
 from GUI import TimerGUI
 import sys
-import time
+import time, Data
 import threading #threading 모듈
 import Alarm
 
 RunTimer = False #타이머 객체 실행 여부
 CreateTimer = False #타이머 객체 생성 여부
+data = Data.Data()
 
 class Timer:
     _Sec = 0
@@ -25,15 +26,15 @@ class Timer:
     
     @property
     def _Hour(self):
-        return Timer._Hour
+        return self._Hour
 
     @property
     def _Min(self):
-        return Timer._Min
+        return self._Min
 
     @property
     def _Sec(self):
-        return Timer._Sec
+        return self._Sec
 
     @property
     def Percent(self):
@@ -116,4 +117,4 @@ def CallAlram():#알람 객체 생성
 #TimerGUI 연결
 app = QApplication(sys.argv)
 gui = TimerGUI.TimerGUI()
-app.exec()
+app.exec() #app이 끝날 때 까지 loop로 돌린다

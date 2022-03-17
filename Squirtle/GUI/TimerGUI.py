@@ -12,6 +12,8 @@ from PyQt5.QtGui import QFont
 from PyQt5.QtGui import QIcon
 from PyQt5.QtCore import *
 
+#TODO 시간 설정을 환경설정으로 넣기
+
 class TimerGUI(QWidget): #클래스
     def __init__(self): #생성자
         self.Hour = 00
@@ -156,11 +158,9 @@ class TimerGUI(QWidget): #클래스
 
     def ConfigBtnClicked(self): #Config 버튼 클릭
         #second window 열기
-        ConfigDialog = QDialog()
         ConfigUI = ConfigGUI.ConfigGUI()
-        ConfigUI.setupUi(ConfigDialog)
-        ConfigDialog.exec_()
-    
+        ConfigUI.exec_() #ConfigUI가 끝나기 전 까지 루프
+
     def StartBtnCliked(self): #Start 버튼 클릭
         self.Hour = int(self.HCombo.currentText())
         self.Min = int(self.MCombo.currentText())

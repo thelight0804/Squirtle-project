@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>419</width>
-    <height>496</height>
+    <width>423</width>
+    <height>505</height>
    </rect>
   </property>
   <property name="font">
@@ -316,6 +316,16 @@
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>TermlineEdit</tabstop>
+  <tabstop>NamelineEdit</tabstop>
+  <tabstop>ContentlineEdit</tabstop>
+  <tabstop>LangcomboBox</tabstop>
+  <tabstop>BootcheckBox</tabstop>
+  <tabstop>InfoBTN</tabstop>
+  <tabstop>OKBTN</tabstop>
+  <tabstop>CancelBTN</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>
