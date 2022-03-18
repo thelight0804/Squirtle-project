@@ -22,9 +22,23 @@ class ConfigGUI(QDialog, form_class) :
         self.CancelBTN.clicked.connect(self.CancelClicked) #취소
 
         #입력 값
-        ##TermlineEdit을 int 값만 받게 설정
+        self.HcomboBox.setFixedSize(80,50)
+        self.McomboBox.setFixedSize(80,50)
+        for i in range(0, 13): #Hour 시간 추가
+            if i<10: #1의 자리 '0' 추가
+                self.HcomboBox.addItem('0'+str(i))
+            else:
+                self.HcomboBox.addItem(str(i))
+        for i in range(0, 12): #Min 시간 추가
+            if i<2:
+                self.McomboBox.addItem('0'+str(i*5))
+            else:
+                self.McomboBox.addItem(str(i*5))
+
+        ##TermlineEdit 설정
         self.OnlyInt = QtGui.QIntValidator()
-        self.TermlineEdit.setValidator(self.OnlyInt)
+        self.TermlineEdit.setValidator(self.OnlyInt) #int 값만 받기
+        self.TermlineEdit.setFixedSize(80,50)
 
         ##기존 값 반영
         #self.TermlineEdit.setText(str(Term))
@@ -39,21 +53,26 @@ class ConfigGUI(QDialog, form_class) :
         QMessageBox.about(self, '프로그램 정보', '개발자 : 박상현\n프로그램 버전 : 0.1')
         
     def OKClicked(self): #확인 버튼 클릭 시
-        result = QMessageBox.question(self, '경고', '저장하시겠습니까?')
-        if result == QMessageBox.Yes: #Yes를 누를 시
-            self.SaveObject()
-            self.close() #현재 Dialog 닫기
-        else: pass
+        if int(self.HcomboBox.currentText()) == 0 and int(self.McomboBox.currentText()) == 0: # 0:0에서 타이머 시작 방지
+            QMessageBox.about(self, 'Error', '시간을 설정해 주세요')
+        else:
+            result = QMessageBox.question(self, '경고', '저장하시겠습니까?')
+            if result == QMessageBox.Yes: #Yes를 누를 시
+                self.SaveObject()
+                self.close() #현재 Dialog 닫기
+            else: pass
         
     def CancelClicked(self): #취소 버튼 클릭 시
         self.close()
 
     def SaveObject(self): #입력 값 저장
+        Timer.data.Sec = (int(self.HcomboBox.currentText())*3600)+(int(self.McomboBox.currentText())*60)
         Timer.data.Term = int(self.TermlineEdit.text()) #lineEdit의 text 반환
         Timer.data.Name = self.NamelineEdit.text()
         Timer.data.Content = self.ContentlineEdit.text()
         Timer.data.Language = self.LangcomboBox.currentIndex() #comboBox의 index 값
         if self.BootcheckBox.isChecked() : Timer.data.OSBoot = True
+        Timer.data.DataInfo()
 
 # if  __name__ == "__main__" :
 #     #QApplication : 프로그램을 실행시켜주는 클래스

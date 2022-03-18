@@ -12,8 +12,6 @@ from PyQt5.QtGui import QFont
 from PyQt5.QtGui import QIcon
 from PyQt5.QtCore import *
 
-#TODO 시간 설정을 환경설정으로 넣기
-
 class TimerGUI(QWidget): #클래스
     def __init__(self): #생성자
         self.Hour = 00
@@ -55,25 +53,25 @@ class TimerGUI(QWidget): #클래스
         self.StartBtn.setFlat(True)
         self.StartBtn.clicked.connect(self.StartBtnCliked)
 
-        ##ComboBox 구현
-        self.HCombo = QComboBox(self) #시
-        self.MCombo = QComboBox(self) #분
-        self.HCombo.setFixedSize(80,50)
-        self.MCombo.setFixedSize(80,50)
-        for i in range(0, 13): #Hour 시간 추가
-            if i<10: #1의 자리 '0' 추가
-                self.HCombo.addItem('0'+str(i))
-            else:
-                self.HCombo.addItem(str(i))
-        for i in range(0, 12): #Min 시간 추가
-            if i<2:
-                self.MCombo.addItem('0'+str(i*5))
-            else:
-                self.MCombo.addItem(str(i*5))
+        # #ComboBox 구현
+        # self.HCombo = QComboBox(self) #시
+        # self.MCombo = QComboBox(self) #분
+        # self.HCombo.setFixedSize(80,50)
+        # self.MCombo.setFixedSize(80,50)
+        # for i in range(0, 13): #Hour 시간 추가
+        #     if i<10: #1의 자리 '0' 추가
+        #         self.HCombo.addItem('0'+str(i))
+        #     else:
+        #         self.HCombo.addItem(str(i))
+        # for i in range(0, 12): #Min 시간 추가
+        #     if i<2:
+        #         self.MCombo.addItem('0'+str(i*5))
+        #     else:
+        #         self.MCombo.addItem(str(i*5))
 
         ##QLable 구현
-        self.MarkLabel = QLabel(':', self)
-        self.MarkLabel.setAlignment(Qt.AlignCenter)
+        #self.MarkLabel = QLabel(':', self)
+        #self.MarkLabel.setAlignment(Qt.AlignCenter)
         self.LMarkLabel = QLabel(':', self) #왼쪽 ':'
         self.LMarkLabel.setAlignment(Qt.AlignCenter)
         self.RMarkLabel = QLabel(':', self) #오른쪽 ':'
@@ -112,20 +110,20 @@ class TimerGUI(QWidget): #클래스
         
         hboxMid = QHBoxLayout() #시간 설정 레이아웃
         hboxMid.addStretch(1)
-        hboxMid.addWidget(self.HCombo)
+        #hboxMid.addWidget(self.HCombo)
         hboxMid.addWidget(self.HLabel)
         hboxMid.addWidget(self.LMarkLabel)
-        hboxMid.addWidget(self.MarkLabel)
-        hboxMid.addWidget(self.MCombo)
+        #hboxMid.addWidget(self.MarkLabel)
+        #hboxMid.addWidget(self.MCombo)
         hboxMid.addWidget(self.MLabel)
         hboxMid.addWidget(self.RMarkLabel)
         hboxMid.addWidget(self.SLabel)
         hboxMid.addStretch(1)
-        self.HLabel.hide()
-        self.MLabel.hide()
-        self.LMarkLabel.hide()
-        self.RMarkLabel.hide()
-        self.SLabel.hide()
+        # self.HLabel.hide()
+        # self.MLabel.hide()
+        # self.LMarkLabel.hide()
+        # self.RMarkLabel.hide()
+        # self.SLabel.hide()
 
         hboxBar = QHBoxLayout() #진행바 레이아웃
         hboxBar.addWidget(self.TimerBar)
@@ -162,16 +160,16 @@ class TimerGUI(QWidget): #클래스
         ConfigUI.exec_() #ConfigUI가 끝나기 전 까지 루프
 
     def StartBtnCliked(self): #Start 버튼 클릭
-        self.Hour = int(self.HCombo.currentText())
-        self.Min = int(self.MCombo.currentText())
-        if self.Hour == 0 and self.Min ==0: # 0:0에서 타이머 시작 방지
-            QMessageBox.about(self, 'Error', '시간을 설정해 주세요')
-        elif Timer.RunTimer == True:
+        # self.Hour = int(self.HCombo.currentText())
+        # self.Min = int(self.MCombo.currentText())
+        # if self.Hour == 0 and self.Min ==0: # 0:0에서 타이머 시작 방지
+        #     QMessageBox.about(self, 'Error', '시간을 설정해 주세요')
+        if Timer.RunTimer == True:
             Timer.RunTimer = False
             self.StartBtn.setIcon(QtGui.QIcon('..\Assets\icon\start.svg'))
         else: #타이머 실행
-            self.ShowTimerLabel()
-            Timer.StartTimer(self.Hour, self.Min) #Timer.StartTimer 호출
+            #self.ShowTimerLabel()
+            Timer.StartTimer() #Timer.StartTimer 호출
             self.StartBtn.setIcon(QtGui.QIcon('..\Assets\icon\pause.svg'))
 
     def ResetBtnCliked(self): #초기화 버튼

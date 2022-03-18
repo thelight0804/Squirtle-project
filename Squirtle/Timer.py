@@ -11,52 +11,23 @@ CreateTimer = False #타이머 객체 생성 여부
 data = Data.Data()
 
 class Timer:
-    _Sec = 0
-    _Hour = 0
-    _Min = 0
+    __Sec = 0
 
-    def __init__(self, Hour, Min, Sec, Percent):
-        Timer._Hour = Hour #시간
-        Timer._Min = Min #분
-        Timer._Sec = Sec #초
-        self.__Percent = Percent #__ = private #타이머 진행률
+    def __init__(self, Sec):
+        self.__Sec = Sec #초
     
     def __del__(self): #소멸자
         pass
-    
-    @property
-    def _Hour(self):
-        return self._Hour
 
     @property
-    def _Min(self):
-        return self._Min
+    def Sec(self):
+        return self.__Sec
 
-    @property
-    def _Sec(self):
-        return self._Sec
-
-    @property
-    def Percent(self):
-        return self.__Percent
-
-    @_Hour.setter
-    def _Hour(self, Hour):
-        if type(Hour) is not int:
-            raise ValueError("Invalid Hour")
-        Timer._Hour = Hour
-
-    @_Min.setter
-    def _Min(self, Min):
-        if type(Min) is not int:
-            raise ValueError("Invalid Min")
-        Timer._Min = Min
-
-    @_Sec.setter
-    def _Sec(self, Sec):
+    @Sec.setter
+    def Sec(self, Sec):
         if type(Sec) is not int:
             raise ValueError("Invalid Sec")
-        Timer._Sec = Sec
+        self.__Sec = Sec
 
     def CountDown(self): #카운트 다운
         global RunTimer
@@ -64,47 +35,47 @@ class Timer:
         RunTimer = True
 
         if CreateTimer == False:
-            Timer._Sec = (Timer._Hour*3600)+(Timer._Min*60) #모두 초로 더한 다음에 초에서 시, 분으로 분배
+            #Timer._Sec = (Timer._Hour*3600)+(Timer._Min*60) #모두 초로 더한 다음에 초에서 시, 분으로 분배
             CreateTimer = True
-        TimeUpdate()
+        TimeUpdate(self)
 
-        while Timer._Sec > 0:
+        while self.Sec > 0:
             if RunTimer == False:
                 PauseTimer(self) #일시정지
                 break #while문을 빠져 나가면 소멸자가 실행된다
-            time.sleep(1) #TODO 시간 조정
-            Timer._Sec += -1
-            TimeUpdate()
-            if Timer._Sec == 0:
-                Timer._Sec = (Timer._Hour*3600)+(Timer._Min*60) #시간 재설정으로 타이머 재시작
+            time.sleep(0.01) #TODO 시간 조정
+            self.Sec += -1
+            TimeUpdate(self)
+            if self.Sec == 0:
+                #Timer._Sec = (Timer._Hour*3600)+(Timer._Min*60) #시간 재설정으로 타이머 재시작
                 CallAlram() #윈도우10 Toast 알람
 
-def StartTimer(hour, min): #Timer 생성
+def StartTimer(): #Timer 생성
     global RunTimer #global : 전역변수인 RunTimer을 사용한다고 선언
     global CreateTimer
     if CreateTimer == True:
-        timer = Timer(Timer._Hour, Timer._Min, Timer._Sec, 0.0)
+        timer = Timer(data.Sec)
         thr1 = threading.Thread(target=timer.CountDown).start()
     else:
-        timer = Timer(hour, min, min*60, 0.0)
+        timer = Timer(data.Sec)
         thr1 = threading.Thread(target=timer.CountDown).start()
 
 def PauseTimer(self): #일시정지
-    TimeUpdate()
+    TimeUpdate(self)
 
-def ResetTimer(): #초기화
+def ResetTimer(self): #초기화
     global RunTimer
     global CreateTimer
     RunTimer = False
     CreateTimer = False
-    Timer._Sec = 0
-    TimeUpdate()
+    Timer.Sec = 0
+    TimeUpdate(self)
     gui.ShowTimerCombo()
 
-def TimeUpdate(): #타이머 데이터를 GUI에 반영
-    gui.HLabel.setText(str(int(Timer._Sec/3600)).zfill(2)) #.zfill : 원하는 개수만큼 '0' 채우기
-    gui.MLabel.setText(str(int(Timer._Sec/60%60)).zfill(2))
-    gui.SLabel.setText(str(Timer._Sec%60).zfill(2))
+def TimeUpdate(self): #타이머 데이터를 GUI에 반영
+    gui.HLabel.setText(str(int(self.Sec/3600)).zfill(2)) #.zfill : 원하는 개수만큼 '0' 채우기
+    gui.MLabel.setText(str(int(self.Sec/60%60)).zfill(2))
+    gui.SLabel.setText(str(self.Sec%60).zfill(2))
     gui.HLabel.update()
     gui.MLabel.update()
     gui.SLabel.update()

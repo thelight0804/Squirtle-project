@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>423</width>
-    <height>505</height>
+    <width>488</width>
+    <height>612</height>
    </rect>
   </property>
   <property name="font">
@@ -42,9 +42,109 @@
        <property name="title">
         <string>알림 설정</string>
        </property>
-       <layout class="QVBoxLayout" name="verticalLayout_8">
+       <layout class="QVBoxLayout" name="verticalLayout" stretch="0,0,0,0">
         <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="2,0,2">
+         <layout class="QHBoxLayout" name="horizontalLayout_7" stretch="1,2,0,1,0,1">
+          <property name="sizeConstraint">
+           <enum>QLayout::SetDefaultConstraint</enum>
+          </property>
+          <item>
+           <widget class="QLabel" name="label_6">
+            <property name="font">
+             <font>
+              <family>나눔고딕</family>
+              <pointsize>13</pointsize>
+              <weight>50</weight>
+              <italic>false</italic>
+              <bold>false</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>시간 설정</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer_3">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QComboBox" name="HcomboBox">
+            <property name="font">
+             <font>
+              <family>나눔고딕</family>
+              <pointsize>13</pointsize>
+              <weight>50</weight>
+              <italic>false</italic>
+              <bold>false</bold>
+             </font>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>20</width>
+              <height>20</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_7">
+            <property name="font">
+             <font>
+              <family>나눔고딕</family>
+              <pointsize>13</pointsize>
+              <weight>50</weight>
+              <italic>false</italic>
+              <bold>false</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>시간</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QComboBox" name="McomboBox">
+            <property name="font">
+             <font>
+              <family>나눔고딕</family>
+              <pointsize>13</pointsize>
+              <weight>50</weight>
+              <italic>false</italic>
+              <bold>false</bold>
+             </font>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_8">
+            <property name="font">
+             <font>
+              <family>나눔고딕</family>
+              <pointsize>13</pointsize>
+              <weight>50</weight>
+              <italic>false</italic>
+              <bold>false</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>분</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="0,10,0,0">
           <item>
            <widget class="QLabel" name="label">
             <property name="font">
@@ -60,7 +160,7 @@
              </font>
             </property>
             <property name="text">
-             <string>다음 타이머 시작 시간 (분)</string>
+             <string>다음 타이머 시작 시간</string>
             </property>
            </widget>
           </item>
@@ -87,6 +187,25 @@
               <italic>false</italic>
               <bold>false</bold>
              </font>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_9">
+            <property name="font">
+             <font>
+              <family>나눔고딕</family>
+              <pointsize>13</pointsize>
+              <weight>50</weight>
+              <italic>false</italic>
+              <bold>false</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>분</string>
             </property>
            </widget>
           </item>
@@ -124,6 +243,9 @@
               <bold>false</bold>
              </font>
             </property>
+            <property name="alignment">
+             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+            </property>
            </widget>
           </item>
          </layout>
@@ -156,6 +278,9 @@
               <italic>false</italic>
               <bold>false</bold>
              </font>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
             </property>
            </widget>
           </item>

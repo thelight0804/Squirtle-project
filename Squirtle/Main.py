@@ -20,3 +20,8 @@ def ExitProgram(self):
 
 if __name__ == "__main__":
     Timer
+
+"""
+TODO 시간 설정 환경설정으로 넣기
+    프로세스바, 사용자 타이머 버튼 제거
+"""
