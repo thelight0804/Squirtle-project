@@ -3,8 +3,8 @@
 class Data:
     #def __init__(self, Sec, Term, Name, Content, Language, OSBoot):
     def __init__(self):
-        self.__Sec = 60 #시간 초
-        self.__Term = 3  #다음 타이머가 시작되는 텀
+        self.__Sec = 300 #시간 초
+        self.__Term = 60  #다음 타이머가 시작되는 텀
         self.__Name = "Squirtle" #알람 이름
         self.__Content = "스트레칭을 해주세요"#알람 설명
         self.__Language = 0 #현재 언어 0=한국어, 1=영어, 2=일본어

@@ -1,5 +1,5 @@
 #알람 기능
-
+import Timer
 from win10toast import ToastNotifier #Windows 10 알림(Toast)
 #pip install win10toast 로 설치해야 사용 가능
 
@@ -11,7 +11,7 @@ class alarm:
     
     def call(self): #Windows 10 알람
         toast = ToastNotifier() #win10toast의 ToastNotifier 객체 생성
-        toast.show_toast(title="1시간이 지났습니다", msg="스트레칭을 해주세요", icon_path="..\Assets\icon\Squirtle.ico")
+        toast.show_toast(title=Timer.data.Name, msg=Timer.data.Content, icon_path="..\Assets\icon\Squirtle.ico")
         #TODO toast 알림창을 이용한 상호교환도 하고 싶은데..
 
     #property & setter
