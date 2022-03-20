@@ -118,12 +118,14 @@ class TimerGUI(QWidget): #클래스
         ConfigUI.exec_() #ConfigUI가 끝나기 전 까지 루프
 
     def StartBtnCliked(self): #Start 버튼 클릭
-        if Timer.RunTimer == True:
-            Timer.RunTimer = False
-            self.StartBtn.setIcon(QtGui.QIcon('..\Assets\icon\start.svg'))
-        else: #타이머 실행
+        if Timer.RunTimer == False: #정지 상태일 때
+            Timer.RunTimer = True
             Timer.StartTimer() #Timer.StartTimer 호출
             self.StartBtn.setIcon(QtGui.QIcon('..\Assets\icon\pause.svg'))
+        else: #진행중 일 때
+            Timer.RunTimer = False
+            self.StartBtn.setIcon(QtGui.QIcon('..\Assets\icon\start.svg'))
+
 
     def ResetBtnCliked(self): #초기화 버튼
         Timer.ResetTimer()

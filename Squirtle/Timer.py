@@ -7,16 +7,18 @@ import time
 import Data, Alarm
 import threading #threading 모듈
 
+data = Data.Data() #Data 객체 생성
 RunTimer = False #타이머 객체 실행 여부
 CreateTimer = False #타이머 객체 생성 여부
-data = Data.Data()
+Break = False #휴식 타이머 여부
+TimerSec = data.Sec #일시정지 했을 시 사용할 Sec
+
 class Timer:
-    def __init__(self, Sec, Break):
+    def __init__(self, Sec):
         self.__Sec = Sec #초
-        self.__Break = Break #타이머가 끝났는지 확인
     
     def __del__(self): #소멸자
-        pass
+        print("소멸자 실행")
 
     @property
     def Sec(self):
@@ -29,40 +31,39 @@ class Timer:
         self.__Sec = Sec
 
     @property
-    def Break(self):
-        return self.__Break
+    def thr(self):
+        return self.__thr
 
-    @Break.setter
-    def Break(self, Break):
-        if type(Break) is not bool:
-            raise ValueError("Invalid Break")
-        self.__Break = Break
+    @thr.setter
+    def thr(self, thr):
+        self.__thr = thr
 
     def CountDown(self): #카운트 다운
         global RunTimer
         global CreateTimer
-        RunTimer = True
+        global TimerSec
+        global Break
 
-        if CreateTimer == False:
-            CreateTimer = True
+        # if CreateTimer == False:
+        #     CreateTimer = True
+        # else:
+        #     self.Sec = TimerSec
         self.TimeUpdate()
-
         while self.Sec > 0:
-            if RunTimer == False:
-                self.PauseTimer() #일시정지
+            if RunTimer == False: #일시정지
+                self.TimeUpdate()
+                #StartTimer()
                 break #while문을 빠져 나가면 소멸자가 실행된다
-            time.sleep(0.01) #TODO 시간 조정
+            time.sleep(0.1) #TODO 시간 조정
             self.Sec += -1
+            #TimerSec += -1
             self.TimeUpdate()
-            if self.Sec == 0 and self.Break == False: #타이머가 끝난 경우
+            if self.Sec == 0 and Break == False: #타이머가 끝난 경우
                 CallAlram() #윈도우10 Toast 알람
-                CallBreakTimer()
-            elif self.Sec == 0 and self.Break == True: #휴식 타이머가 끝난 경우
-                self.Break = False
-                self.Sec = data.Sec
-
-    def PauseTimer(self): #일시정지
-        self.TimeUpdate()
+                Break = True
+            elif self.Sec == 0 and Break == True: #휴식 타이머가 끝난 경우
+                Break = False
+        StartTimer()
 
     def TimeUpdate(self): #타이머 데이터를 GUI에 반영
         gui.HLabel.setText(str(int(self.Sec/3600)).zfill(2)) #.zfill : 원하는 개수만큼 '0' 채우기
@@ -71,16 +72,20 @@ class Timer:
         gui.HLabel.update()
         gui.MLabel.update()
         gui.SLabel.update()
+    
+def PauseTimer(Timer):
+    BreakTimer = Timer(Timer.Sec)
+    del Timer
 
 def StartTimer(): #Timer 생성
     global RunTimer #global : 전역변수인 RunTimer을 사용한다고 선언
     global CreateTimer
-    if CreateTimer == True:
-        timer = Timer(data.Sec, False)
-        thr = threading.Thread(target=timer.CountDown).start()
+    global Break
+    if Break == False:
+        timer = Timer(data.Sec)
     else:
-        timer = Timer(data.Sec, False)
-        thr = threading.Thread(target=timer.CountDown).start()
+        timer = Timer(data.Term)
+    threading.Thread(target=timer.CountDown).start()
 
 def ResetTimer(): #초기화
     global RunTimer
@@ -98,10 +103,6 @@ def ResetTimer(): #초기화
 def CallAlram():#알람 객체 생성
     alarm = Alarm.alarm(0, 0)
     alarm.call()
-
-def CallBreakTimer(): #휴식 타이머 객체 생성
-    breakTimer = Timer(data.Term, True)
-    breakTimer.CountDown()
 
 #TimerGUI 연결
 app = QApplication(sys.argv)
