@@ -45,11 +45,11 @@ class Timer:
         ChangeColor(Break)
         self.TimeUpdate()
         while self.Sec > 0:
+            time.sleep(1) #TODO 시간 조정
             if PauseTimer == False: #일시정지
                 TimerSec = self.Sec
                 self.TimeUpdate()
                 break #while문을 빠져 나가면 소멸자가 실행된다
-            time.sleep(1) #TODO 시간 조정
             self.Sec += -1
             self.TimeUpdate()
             if self.Sec == 0 and Break == False: #타이머가 끝난 경우
@@ -78,11 +78,11 @@ def ChangeColor(Break):
         gui.LMarkLabel.setStyleSheet("QLabel {color: #3d9454;}")
         gui.RMarkLabel.setStyleSheet("QLabel {color: #3d9454;}")
     else:
-        gui.HLabel.setStyleSheet("QLabel {color: #cccf44;}")
-        gui.MLabel.setStyleSheet("QLabel {color: #cccf44;}")
-        gui.SLabel.setStyleSheet("QLabel {color: #cccf44;}")
-        gui.LMarkLabel.setStyleSheet("QLabel {color: #cccf44;}")
-        gui.RMarkLabel.setStyleSheet("QLabel {color: #cccf44;}")
+        gui.HLabel.setStyleSheet("QLabel {color: #f9c684;}")
+        gui.MLabel.setStyleSheet("QLabel {color: #f9c684;}")
+        gui.SLabel.setStyleSheet("QLabel {color: #f9c684;}")
+        gui.LMarkLabel.setStyleSheet("QLabel {color: #f9c684;}")
+        gui.RMarkLabel.setStyleSheet("QLabel {color: #f9c684;}")
 
 
 def StartTimer(): #Timer 생성
