@@ -3,11 +3,19 @@
 from PyQt5.QtWidgets import *
 from GUI import TimerGUI
 import sys
-import time
-import Data, Alarm
-import threading #threading 모듈
+import time, threading #threading 모듈
+import Data, Alarm, FileModule
+#로컬 Data 파일 열기
+try:
+    f = open('SaveData.json', 'r')
+except FileNotFoundError: #파일이 없을 시
+    data = Data.Data(3600, 60, "Squirtle", "스트레칭을 해주세요", False) #Data 객체 생성
+    SaveFile = FileModule.SerializationData(data.Sec, data.Term, data.Name, data.Content, data.AutoStart)
+    FileModule.SaveData(SaveFile)
+else: #파일이 있을 시
+    LoadFile = FileModule.LoadData()
+    data = Data.Data(LoadFile[0], LoadFile[1], LoadFile[2], LoadFile[3], LoadFile[4])
 
-data = Data.Data() #Data 객체 생성
 
 PauseTimer = False #타이머 객체 실행 여부
 Break = False #휴식 타이머

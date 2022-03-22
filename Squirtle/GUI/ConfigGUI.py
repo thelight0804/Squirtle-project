@@ -1,8 +1,9 @@
-import sys, Timer
+import Timer, FileModule
 from tkinter.messagebox import YES
 from PyQt5.QtWidgets import *
 from PyQt5 import uic
 from PyQt5 import QtGui
+
 
 #UI파일 연결
 #단, UI파일은 Python 코드 파일과 같은 디렉토리에 위치해야한다.
@@ -75,3 +76,8 @@ class ConfigGUI(QDialog, form_class) :
         Timer.data.Name = self.NamelineEdit.text()
         Timer.data.Content = self.ContentlineEdit.text()
         if self.AutoStartcheckBox.isChecked() : Timer.data.AutoStart = True
+        else : Timer.data.AutoStart = False
+
+        #파일에 저장
+        SaveFile = FileModule.SerializationData(Timer.data.Sec, Timer.data.Term, Timer.data.Name, Timer.data.Content, Timer.data.AutoStart)
+        FileModule.SaveData(SaveFile)
