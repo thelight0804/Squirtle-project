@@ -23,7 +23,7 @@ class TimerGUI(QWidget): #클래스
         self.setWindowIcon(QIcon('..\Assets\icon\Squirtle.ico')) #프로그램 아이콘
         font = QFont('나눔고딕', 15) #폰트 설정
         self.setFont(font)
-        self.resize(1080, 720) #창 사이즈
+        self.resize(540, 360) #창 사이즈
         self.init_UI()
 
     def init_UI(self):
@@ -118,14 +118,13 @@ class TimerGUI(QWidget): #클래스
         ConfigUI.exec_() #ConfigUI가 끝나기 전 까지 루프
 
     def StartBtnCliked(self): #Start 버튼 클릭
-        if Timer.RunTimer == False: #정지 상태일 때
-            Timer.RunTimer = True
+        if Timer.PauseTimer == False: #정지 상태일 때
+            Timer.PauseTimer = True
             Timer.StartTimer() #Timer.StartTimer 호출
             self.StartBtn.setIcon(QtGui.QIcon('..\Assets\icon\pause.svg'))
         else: #진행중 일 때
-            Timer.RunTimer = False
+            Timer.PauseTimer = False
             self.StartBtn.setIcon(QtGui.QIcon('..\Assets\icon\start.svg'))
-
 
     def ResetBtnCliked(self): #초기화 버튼
         Timer.ResetTimer()

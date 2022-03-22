@@ -49,8 +49,7 @@ class ConfigGUI(QDialog, form_class) :
         self.TermlineEdit.setText(str(int(Timer.data.Term/60))) #Timer.data.Sec() 오류!
         self.NamelineEdit.setText(Timer.data.Name)
         self.ContentlineEdit.setText(Timer.data.Content)
-        self.LangcomboBox.setCurrentIndex(Timer.data.Language)
-        self.BootcheckBox.setChecked(Timer.data.OSBoot)
+        self.AutoStartcheckBox.setChecked(Timer.data.AutoStart)
         self.SaveObject()
 
     def InfoClicked(self): #정보 버튼 클릭 시
@@ -75,5 +74,4 @@ class ConfigGUI(QDialog, form_class) :
         Timer.data.Term = int(self.TermlineEdit.text())*60 #lineEdit의 text 반환
         Timer.data.Name = self.NamelineEdit.text()
         Timer.data.Content = self.ContentlineEdit.text()
-        Timer.data.Language = self.LangcomboBox.currentIndex() #comboBox의 index 값
-        if self.BootcheckBox.isChecked() : Timer.data.OSBoot = True
+        if self.AutoStartcheckBox.isChecked() : Timer.data.AutoStart = True
