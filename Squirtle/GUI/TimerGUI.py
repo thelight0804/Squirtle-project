@@ -30,21 +30,21 @@ class TimerGUI(QWidget): #클래스
         ##버튼 구현
         #환경설정 버튼
         ConfigBtn = QPushButton('', self) #ConfigBtn 버튼 구현
-        ConfigBtn.setIcon(QtGui.QIcon('..\Assets\icon\config.svg')) #아이콘 구현 (상대경로)
+        ConfigBtn.setIcon(QtGui.QIcon('..\Assets\icon\config.png')) #아이콘 구현 (상대경로)
         ConfigBtn.setIconSize(QtCore.QSize(50,50)) #아이콘 크기
         ConfigBtn.setFlat(True) #버튼 테두리 없애기
         ConfigBtn.clicked.connect(self.ConfigBtnClicked) #버튼 클릭 했을 때 ConfigBtn_clicked 함수 호출
 
         #Reset 버튼
         ResetBtn = QPushButton('', self)
-        ResetBtn.setIcon(QtGui.QIcon('..\Assets\icon\\reset.svg')) #\r은 옵션이라 \\r를 사용하였다
+        ResetBtn.setIcon(QtGui.QIcon('..\Assets\icon\\reset.png')) #\r은 옵션이라 \\r를 사용하였다
         ResetBtn.setIconSize(QtCore.QSize(50,50))
         ResetBtn.setFlat(True)
         ResetBtn.clicked.connect(self.ResetBtnCliked)
 
         #Start 버튼
         self.StartBtn = QPushButton('', self)
-        self.StartBtn.setIcon(QtGui.QIcon('..\Assets\icon\start.svg'))
+        self.StartBtn.setIcon(QtGui.QIcon('..\Assets\icon\start.png'))
         self.StartBtn.setIconSize(QtCore.QSize(50,50))
         self.StartBtn.setFlat(True)
         self.StartBtn.clicked.connect(self.StartBtnCliked)
@@ -121,10 +121,10 @@ class TimerGUI(QWidget): #클래스
         if Timer.PauseTimer == False: #정지 상태일 때
             Timer.PauseTimer = True
             Timer.StartTimer() #Timer.StartTimer 호출
-            self.StartBtn.setIcon(QtGui.QIcon('..\Assets\icon\pause.svg'))
+            self.StartBtn.setIcon(QtGui.QIcon('..\Assets\icon\pause.png'))
         else: #진행중 일 때
             Timer.PauseTimer = False
-            self.StartBtn.setIcon(QtGui.QIcon('..\Assets\icon\start.svg'))
+            self.StartBtn.setIcon(QtGui.QIcon('..\Assets\icon\start.png'))
 
     def ResetBtnCliked(self): #초기화 버튼
         Timer.ResetTimer()
