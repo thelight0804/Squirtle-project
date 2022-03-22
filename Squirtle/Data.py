@@ -2,12 +2,12 @@
 
 class Data:
     #def __init__(self, Sec, Term, Name, Content, Language, OSBoot):
-    def __init__(self):
-        self.__Sec = 3600 #시간 초
-        self.__Term = 60  #다음 타이머가 시작되는 텀
-        self.__Name = "Squirtle" #알람 이름
-        self.__Content = "스트레칭을 해주세요"#알람 설명
-        self.__AutoStart = True #프로그램 실행 시 타이머 자동 시작
+    def __init__(self, Sec, Term, Name, Content, AutoStart):
+        self.__Sec = Sec #시간 초
+        self.__Term = Term  #다음 타이머가 시작되는 텀
+        self.__Name = Name #알람 이름
+        self.__Content = Content#알람 설명
+        self.__AutoStart = AutoStart #프로그램 실행 시 타이머 자동 시작
 
     def DataInfo(self): #현재 Data 값 출력
         print("Sec = ", self.Sec)

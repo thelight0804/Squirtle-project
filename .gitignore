@@ -9,3 +9,6 @@ designer.lnk
 Squirtle/__pycache__
 Squirtle/GUI/__pycache__
 Squirtle/.vscode
+
+#로컬 저장 파일
+Squirtle/SaveData.json
