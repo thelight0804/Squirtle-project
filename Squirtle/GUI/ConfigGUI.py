@@ -51,10 +51,11 @@ class ConfigGUI(QDialog, form_class) :
         self.NamelineEdit.setText(Timer.data.Name)
         self.ContentlineEdit.setText(Timer.data.Content)
         self.AutoStartcheckBox.setChecked(Timer.data.AutoStart)
+        self.LangcomboBox.setCurrentIndex(Timer.data.Language)
         self.SaveObject()
 
     def InfoClicked(self): #정보 버튼 클릭 시
-        QMessageBox.about(self, '프로그램 정보', '개발자 : 박상현\n프로그램 버전 : 0.1')
+        QMessageBox.about(self, '프로그램 정보', '개발자 : 박상현\n프로그램 버전 : 1.0')
         
     def OKClicked(self): #확인 버튼 클릭 시
         if int(self.HcomboBox.currentText()) == 0 and int(self.McomboBox.currentText()) == 0: # 0:0에서 타이머 시작 방지
@@ -77,7 +78,8 @@ class ConfigGUI(QDialog, form_class) :
         Timer.data.Content = self.ContentlineEdit.text()
         if self.AutoStartcheckBox.isChecked() : Timer.data.AutoStart = True
         else : Timer.data.AutoStart = False
+        Timer.data.Language = self.LangcomboBox.currentIndex()
 
         #파일에 저장
-        SaveFile = FileModule.SerializationData(Timer.data.Sec, Timer.data.Term, Timer.data.Name, Timer.data.Content, Timer.data.AutoStart)
+        SaveFile = FileModule.SerializationData(Timer.data.Sec, Timer.data.Term, Timer.data.Name, Timer.data.Content, Timer.data.AutoStart, Timer.data.Language)
         FileModule.SaveData(SaveFile)

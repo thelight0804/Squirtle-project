@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>423</width>
-    <height>479</height>
+    <width>458</width>
+    <height>475</height>
    </rect>
   </property>
   <property name="font">
@@ -306,8 +306,8 @@
        <property name="title">
         <string>환경 설정</string>
        </property>
-       <layout class="QGridLayout" name="gridLayout_2">
-        <item row="0" column="0">
+       <layout class="QVBoxLayout" name="verticalLayout_4">
+        <item>
          <layout class="QHBoxLayout" name="horizontalLayout_6" stretch="1,0">
           <item>
            <widget class="QLabel" name="label_5">
@@ -343,6 +343,52 @@
             <property name="text">
              <string/>
             </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_5">
+          <item>
+           <widget class="QLabel" name="label_4">
+            <property name="font">
+             <font>
+              <family>나눔고딕</family>
+              <pointsize>13</pointsize>
+              <weight>50</weight>
+              <bold>false</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>언어</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QComboBox" name="LangcomboBox">
+            <property name="font">
+             <font>
+              <family>나눔고딕</family>
+              <pointsize>13</pointsize>
+              <weight>50</weight>
+              <bold>false</bold>
+             </font>
+            </property>
+            <item>
+             <property name="text">
+              <string>한국어</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>영어</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>일본어</string>
+             </property>
+            </item>
            </widget>
           </item>
          </layout>

@@ -5,7 +5,6 @@ from operator import truediv
 import sys
 import Timer
 from GUI import ConfigGUI #ConfigGUI import
-from GUI import ConfigGUI_KR #ConfigGUI_KR import
 
 from PyQt5.QtWidgets import *
 from PyQt5 import QtGui, QtCore
@@ -116,7 +115,6 @@ class TimerGUI(QWidget): #클래스
     def ConfigBtnClicked(self): #Config 버튼 클릭
         #second window 열기
         ConfigUI = ConfigGUI.ConfigGUI()
-        #ConfigUI = ConfigGUI_KR.Ui_ConfigGUI()
         ConfigUI.exec_() #ConfigUI가 끝나기 전 까지 루프
 
     def StartBtnCliked(self): #Start 버튼 클릭

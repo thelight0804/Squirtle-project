@@ -1,92 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="ja_JP">
+<TS version="2.1" language="ko" sourcelanguage="ko">
 <context>
     <name>ConfigGUI</name>
     <message>
-        <location filename="Config.GUI.py" line="287"/>
+        <location filename="ConfigGUI.ui" line="20"/>
         <source>Dialog</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Config.GUI.py" line="288"/>
+        <location filename="ConfigGUI.ui" line="43"/>
         <source>알림 설정</source>
-        <translation type="unfinished">アラーム設定</translation>
+        <translation type="unfinished">알림 설정</translation>
     </message>
     <message>
-        <location filename="Config.GUI.py" line="289"/>
+        <location filename="ConfigGUI.ui" line="63"/>
         <source>시간 설정</source>
-        <translation type="unfinished">時間設定</translation>
+        <translation type="unfinished">시간 설정</translation>
     </message>
     <message>
-        <location filename="Config.GUI.py" line="290"/>
+        <location filename="ConfigGUI.ui" line="111"/>
         <source>시간</source>
-        <translation type="unfinished">時間</translation>
+        <translation type="unfinished">시간</translation>
     </message>
     <message>
-        <location filename="Config.GUI.py" line="293"/>
+        <location filename="ConfigGUI.ui" line="208"/>
         <source>분</source>
-        <translation type="unfinished">分</translation>
+        <translation type="unfinished">분</translation>
     </message>
     <message>
-        <location filename="Config.GUI.py" line="292"/>
+        <location filename="ConfigGUI.ui" line="163"/>
         <source>다음 타이머 시작 시간</source>
-        <translation type="unfinished">次のタイマースタート時間</translation>
+        <translation type="unfinished">다음 타이머 시작 시간</translation>
     </message>
     <message>
-        <location filename="Config.GUI.py" line="294"/>
+        <location filename="ConfigGUI.ui" line="231"/>
         <source>알림 이름</source>
-        <translation type="unfinished">アラーム名前</translation>
+        <translation type="unfinished">알림 이름</translation>
     </message>
     <message>
-        <location filename="Config.GUI.py" line="295"/>
+        <location filename="ConfigGUI.ui" line="267"/>
         <source>알림 내용</source>
-        <translation type="unfinished">アラーム内容</translation>
+        <translation type="unfinished">알림 내용</translation>
     </message>
     <message>
-        <location filename="Config.GUI.py" line="296"/>
+        <location filename="ConfigGUI.ui" line="307"/>
         <source>환경 설정</source>
-        <translation type="unfinished">環境設定</translation>
+        <translation type="unfinished">환경 설정</translation>
     </message>
     <message>
-        <location filename="Config.GUI.py" line="297"/>
-        <source>Windows 부팅 시 자동 실행</source>
-        <translation type="unfinished">Windows自動スタート</translation>
+        <location filename="ConfigGUI.ui" line="323"/>
+        <source>프로그램 실행 시 타이머 시작</source>
+        <translation type="unfinished">프로그램 실행 시 타이머 시작</translation>
     </message>
     <message>
-        <location filename="Config.GUI.py" line="298"/>
+        <location filename="ConfigGUI.ui" line="363"/>
         <source>언어</source>
-        <translation type="unfinished">言語</translation>
+        <translation type="unfinished">언어</translation>
     </message>
     <message>
-        <location filename="Config.GUI.py" line="300"/>
+        <location filename="ConfigGUI.ui" line="379"/>
         <source>한국어</source>
-        <translation type="unfinished">韓国語</translation>
+        <translation type="unfinished">한국어</translation>
     </message>
     <message>
-        <location filename="Config.GUI.py" line="301"/>
+        <location filename="ConfigGUI.ui" line="384"/>
         <source>영어</source>
-        <translation type="unfinished">英語</translation>
+        <translation type="unfinished">영어</translation>
     </message>
     <message>
-        <location filename="Config.GUI.py" line="302"/>
+        <location filename="ConfigGUI.ui" line="389"/>
         <source>일본어</source>
-        <translation type="unfinished">日本語</translation>
+        <translation type="unfinished">일본어</translation>
     </message>
     <message>
-        <location filename="Config.GUI.py" line="303"/>
+        <location filename="ConfigGUI.ui" line="406"/>
         <source>정보</source>
-        <translation type="unfinished">情報</translation>
+        <translation type="unfinished">정보</translation>
     </message>
     <message>
-        <location filename="Config.GUI.py" line="304"/>
+        <location filename="ConfigGUI.ui" line="426"/>
         <source>확인</source>
-        <translation type="unfinished">OK</translation>
+        <translation type="unfinished">확인</translation>
     </message>
     <message>
-        <location filename="Config.GUI.py" line="305"/>
+        <location filename="ConfigGUI.ui" line="433"/>
         <source>취소</source>
-        <translation type="unfinished">Cancle</translation>
+        <translation type="unfinished">취소</translation>
     </message>
 </context>
 </TS>
