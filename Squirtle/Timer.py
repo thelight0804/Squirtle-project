@@ -9,12 +9,12 @@ import Data, Alarm, FileModule
 try:
     f = open('SaveData.json', 'r')
 except FileNotFoundError: #파일이 없을 시
-    data = Data.Data(3600, 60, "Squirtle", "스트레칭을 해주세요", False) #Data 객체 생성
-    SaveFile = FileModule.SerializationData(data.Sec, data.Term, data.Name, data.Content, data.AutoStart)
+    data = Data.Data(3600, 60, "Squirtle", "스트레칭을 해주세요", False, 0) #Data 객체 생성
+    SaveFile = FileModule.SerializationData(data.Sec, data.Term, data.Name, data.Content, data.AutoStart, data.Language)
     FileModule.SaveData(SaveFile)
 else: #파일이 있을 시
     LoadFile = FileModule.LoadData()
-    data = Data.Data(LoadFile[0], LoadFile[1], LoadFile[2], LoadFile[3], LoadFile[4])
+    data = Data.Data(LoadFile[0], LoadFile[1], LoadFile[2], LoadFile[3], LoadFile[4], LoadFile[5])
 
 
 PauseTimer = False #타이머 객체 실행 여부

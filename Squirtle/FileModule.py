@@ -1,8 +1,8 @@
 #파일 입출력을 위한 모듈
 import json
 
-def SerializationData(Sec, Term, Name, Content, AutoStart): #Data 직렬화
-    DataList = [Sec, Term, Name, Content, AutoStart]
+def SerializationData(Sec, Term, Name, Content, AutoStart, Language): #Data 직렬화
+    DataList = [Sec, Term, Name, Content, AutoStart, Language]
     return json.dumps(DataList, ensure_ascii = False) #ensure_ascii = False 한글 깨짐 방지
 
 def SaveData(data): #파일 저장 data = 직렬화된 파일
