@@ -7,7 +7,8 @@ from PyQt5 import QtGui
 
 #UI파일 연결
 #단, UI파일은 Python 코드 파일과 같은 디렉토리에 위치해야한다.
-form_class = uic.loadUiType(r"F:\作業室\Programming\Squirtle_project\Squirtle\GUI\ConfigGUI.ui")[0]
+form_class = uic.loadUiType(r"GUI\\ConfigGUI_KR.ui")[0]
+#form_class = uic.loadUiTmype(r"GUI\\ConfigGUI_JP.ui")[0]
 
 #화면을 띄우는데 사용되는 Class 선언
 class ConfigGUI(QDialog, form_class) :
@@ -17,6 +18,7 @@ class ConfigGUI(QDialog, form_class) :
         super().__init__()
         self.setupUi(self) #.ui를 연결 시켜준다
         self.show()
+
         #버튼 이벤트
         self.InfoBTN.clicked.connect(self.InfoClicked) #정보
         self.OKBTN.clicked.connect(self.OKClicked) #확인

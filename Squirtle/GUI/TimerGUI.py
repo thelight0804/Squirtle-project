@@ -7,7 +7,7 @@ import Timer
 from GUI import ConfigGUI #ConfigGUI import
 
 from PyQt5.QtWidgets import *
-from PyQt5 import QtGui, QtCore
+from PyQt5 import QtGui, QtCore, uic
 from PyQt5.QtGui import QFont
 from PyQt5.QtGui import QIcon
 from PyQt5.QtCore import *

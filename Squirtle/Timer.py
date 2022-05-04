@@ -5,6 +5,7 @@ from GUI import TimerGUI
 import sys
 import time, threading #threading 모듈
 import Data, Alarm, FileModule
+
 #로컬 Data 파일 열기
 try:
     f = open('SaveData.json', 'r')
@@ -15,7 +16,6 @@ except FileNotFoundError: #파일이 없을 시
 else: #파일이 있을 시
     LoadFile = FileModule.LoadData()
     data = Data.Data(LoadFile[0], LoadFile[1], LoadFile[2], LoadFile[3], LoadFile[4], LoadFile[5])
-
 
 PauseTimer = False #타이머 객체 실행 여부
 Break = False #휴식 타이머

@@ -76,4 +76,3 @@ class Data:
         if type(Language) is not int:
             raise ValueError("Invalid Language")
         self.__Language = Language
-
