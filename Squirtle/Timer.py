@@ -5,21 +5,13 @@ from GUI import TimerGUI
 import sys
 import time, threading #threading 모듈
 import Data, Alarm, FileModule
+import Main
 
-#로컬 Data 파일 열기
-try:
-    f = open('SaveData.json', 'r')
-except FileNotFoundError: #파일이 없을 시
-    data = Data.Data(3600, 60, "Squirtle", "스트레칭을 해주세요", False, 0) #Data 객체 생성
-    SaveFile = FileModule.SerializationData(data.Sec, data.Term, data.Name, data.Content, data.AutoStart, data.Language)
-    FileModule.SaveData(SaveFile)
-else: #파일이 있을 시
-    LoadFile = FileModule.LoadData()
-    data = Data.Data(LoadFile[0], LoadFile[1], LoadFile[2], LoadFile[3], LoadFile[4], LoadFile[5])
+#data = FileModule.InitialData() #직렬화 파일
 
 PauseTimer = False #타이머 객체 실행 여부
 Break = False #휴식 타이머
-TimerSec = data.Sec #일시정지 했을 시 사용할 Sec
+TimerSec = Main.data.Sec #일시정지 했을 시 사용할 Sec
 
 class Timer:
     def __init__(self, Sec):
@@ -56,11 +48,11 @@ class Timer:
                 CallAlram() #윈도우10 Toast 알람
                 Break = True
                 ChangeColor(Break)
-                self.Sec = data.Term
+                self.Sec = Main.data.Term
             elif self.Sec == 0 and Break == True: #휴식 타이머가 끝난 경우
                 Break = False
                 ChangeColor(Break)
-                self.Sec = data.Sec
+                self.Sec = Main.data.Sec
 
     def TimeUpdate(self): #타이머 데이터를 GUI에 반영
         gui.HLabel.setText(str(int(self.Sec/3600)).zfill(2)) #.zfill : 원하는 개수만큼 '0' 채우기
@@ -90,7 +82,7 @@ def StartTimer(): #Timer 생성
     if PauseTimer == True:
         timer = Timer(TimerSec)
     else:
-        timer = Timer(data.Sec)
+        timer = Timer(Main.data.Sec)
     threading.Thread(target=timer.CountDown).start()
 
 def ResetTimer(): #초기화
@@ -100,14 +92,14 @@ def ResetTimer(): #초기화
 
     PauseTimer = False
     Break = False
-    TimerSec = data.Sec
+    TimerSec = Main.data.Sec
 
     ChangeColor(Break)
 
     #기본 값으로 돌아가기
-    gui.HLabel.setText(str(int(data.Sec/3600)).zfill(2))
-    gui.MLabel.setText(str(int(data.Sec/60%60)).zfill(2))
-    gui.SLabel.setText(str(data.Sec%60).zfill(2))
+    gui.HLabel.setText(str(int(Main.data.Sec/3600)).zfill(2))
+    gui.MLabel.setText(str(int(Main.data.Sec/60%60)).zfill(2))
+    gui.SLabel.setText(str(Main.data.Sec%60).zfill(2))
     gui.HLabel.update()
     gui.MLabel.update()
     gui.SLabel.update()
@@ -120,6 +112,6 @@ def CallAlram():#알람 객체 생성
 app = QApplication(sys.argv)
 gui = TimerGUI.TimerGUI()
 
-if data.AutoStart == True: #자동 실행 체크 시
+if Main.data.AutoStart == True: #자동 실행 체크 시
     gui.StartBtnCliked()
 app.exec() #app이 끝날 때 까지 loop로 돌린다

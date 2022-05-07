@@ -3,7 +3,7 @@
 
 from operator import truediv
 import sys
-import Timer
+import Timer, Main
 from GUI import ConfigGUI #ConfigGUI import
 
 from PyQt5.QtWidgets import *
@@ -54,11 +54,11 @@ class TimerGUI(QWidget): #클래스
         self.LMarkLabel.setAlignment(Qt.AlignCenter)
         self.RMarkLabel = QLabel(':', self) #오른쪽 ':'
         self.RMarkLabel.setAlignment(Qt.AlignCenter)
-        self.HLabel = QLabel(str(int(Timer.data.Sec/3600)).zfill(2), self) #시간
+        self.HLabel = QLabel(str(int(Main.data.Sec/3600)).zfill(2), self) #시간
         self.HLabel.setAlignment(Qt.AlignCenter)
-        self.MLabel = QLabel(str(int(Timer.data.Sec/60%60)).zfill(2), self) #분
+        self.MLabel = QLabel(str(int(Main.data.Sec/60%60)).zfill(2), self) #분
         self.MLabel.setAlignment(Qt.AlignCenter)
-        self.SLabel = QLabel(str(Timer.data.Sec%60).zfill(2), self) #초
+        self.SLabel = QLabel(str(Main.data.Sec%60).zfill(2), self) #초
         self.SLabel.setAlignment(Qt.AlignCenter)
 
         ##QLabel 폰트

@@ -6,7 +6,7 @@ Title : Squirtle (꼬부기)
 @ING'S (Nifskor)
 """
 #프로그램 실행 시 가장 처음 실행되는 코드
-import Timer
+import Timer, FileModule
 import sys
 
 # class Main:
@@ -14,9 +14,12 @@ import sys
 #         pass
 #         #self.Main = Timer.Timer()
 #         #self.Main = Timer 오류 : import Timer를 통해 Timer가 모듈로 인식되기 때문!
-    
-def ExitProgram(self):
-    sys.SystemExit()
+
+data = FileModule.InitialData() #직렬화 파일
 
 if __name__ == "__main__":
-    Timer
+
+    Timer()
+
+def ExitProgram(self):
+    sys.SystemExit()
