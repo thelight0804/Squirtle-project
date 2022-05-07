@@ -2,12 +2,13 @@
 
 class Data:
     #def __init__(self, Sec, Term, Name, Content, Language, OSBoot):
-    def __init__(self, Sec, Term, Name, Content, AutoStart):
+    def __init__(self, Sec, Term, Name, Content, AutoStart, Language):
         self.__Sec = Sec #시간 초
         self.__Term = Term  #다음 타이머가 시작되는 텀
         self.__Name = Name #알람 이름
         self.__Content = Content#알람 설명
         self.__AutoStart = AutoStart #프로그램 실행 시 타이머 자동 시작
+        self.__Language = Language #언어 (0 : 한국어, 1 : 영어, 2 : 일본어)
 
     def DataInfo(self): #현재 Data 값 출력
         print("Sec = ", self.Sec)
@@ -35,6 +36,10 @@ class Data:
     @property
     def AutoStart(self):
         return self.__AutoStart
+
+    @property
+    def Language(self):
+        return self.__Language
 
     @Sec.setter
     def Sec(self, Sec):
@@ -66,3 +71,8 @@ class Data:
             raise ValueError("Invalid AutoStart")
         self.__AutoStart = AutoStart
 
+    @Language.setter
+    def Language(self, Language):
+        if type(Language) is not int:
+            raise ValueError("Invalid Language")
+        self.__Language = Language
