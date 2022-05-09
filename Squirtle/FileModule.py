@@ -1,7 +1,8 @@
 #파일 입출력을 위한 모듈
 import json, Data
 
-def InitialData(): #직렬화 파일 초기화
+#직렬화 파일 초기화
+def InitialData(): 
     try:
         f = open('SaveData.json', 'r')
     except FileNotFoundError: #파일이 없을 시
@@ -17,13 +18,15 @@ def SerializationData(Sec, Term, Name, Content, AutoStart, Language): #Data 직�
     DataList = [Sec, Term, Name, Content, AutoStart, Language]
     return json.dumps(DataList, ensure_ascii = False) #ensure_ascii = False 한글 깨짐 방지
 
-def SaveData(data): #파일 저장 data = 직렬화된 파일
+#파일 저장 
+def SaveData(data): #data = 직렬화된 파일
     #파일 쓰기
     f = open("SaveData.json", 'w')
     f.write(data)
     f.close()
 
-def LoadData(): #파일 읽기
+#파일 읽기
+def LoadData(): 
     try:
         f = open('SaveData.json', 'r')
     except FileNotFoundError: #파일이 없을 시

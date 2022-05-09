@@ -1,7 +1,6 @@
 #프로그램에 필요한 Data를 가지고 있는 클래스
 
 class Data:
-    #def __init__(self, Sec, Term, Name, Content, Language, OSBoot):
     def __init__(self, Sec, Term, Name, Content, AutoStart, Language):
         self.__Sec = Sec #시간 초
         self.__Term = Term  #다음 타이머가 시작되는 텀
@@ -10,7 +9,8 @@ class Data:
         self.__AutoStart = AutoStart #프로그램 실행 시 타이머 자동 시작
         self.__Language = Language #언어 (0 : 한국어, 1 : 영어, 2 : 일본어)
 
-    def DataInfo(self): #현재 Data 값 출력
+    #현재 Data 값 출력
+    def DataInfo(self): 
         print("Sec = ", self.Sec)
         print("Term = ", self.Term)
         print("Name = ", self.Name)
