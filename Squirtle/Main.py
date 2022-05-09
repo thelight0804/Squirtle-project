@@ -1,5 +1,5 @@
 """
-Date : 22.02.01 ~ 
+Date : 22.02.01 ~ 22.05.09
 Title : Squirtle (꼬부기)
 
 @thelight0804
@@ -9,16 +9,9 @@ Title : Squirtle (꼬부기)
 import Timer, FileModule
 import sys
 
-# class Main:
-#     def __init__(self): #생성자
-#         pass
-#         #self.Main = Timer.Timer()
-#         #self.Main = Timer 오류 : import Timer를 통해 Timer가 모듈로 인식되기 때문!
-
 data = FileModule.InitialData() #직렬화 파일
 
 if __name__ == "__main__":
-
     Timer()
 
 def ExitProgram(self):

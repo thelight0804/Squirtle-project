@@ -1,13 +1,13 @@
 #타이머 기능
 
-from PyQt5.QtWidgets import *
-from GUI import TimerGUI
+import Main
+import Alarm
+
 import sys
 import time, threading #threading 모듈
-import Data, Alarm, FileModule
-import Main
 
-#data = FileModule.InitialData() #직렬화 파일
+from PyQt5.QtWidgets import *
+from GUI import TimerGUI
 
 PauseTimer = False #타이머 객체 실행 여부
 Break = False #휴식 타이머
@@ -16,10 +16,6 @@ TimerSec = Main.data.Sec #일시정지 했을 시 사용할 Sec
 class Timer:
     def __init__(self, Sec):
         self.__Sec = Sec #초
-    
-    def __del__(self): #소멸자
-        #print("소멸자 실행")
-        pass
 
     @property
     def Sec(self):
@@ -31,7 +27,8 @@ class Timer:
             raise ValueError("Invalid Sec")
         self.__Sec = Sec
 
-    def CountDown(self): #카운트 다운
+    #카운트 다운
+    def CountDown(self): 
         global TimerSec
         global Break
         ChangeColor(Break)
@@ -54,7 +51,8 @@ class Timer:
                 ChangeColor(Break)
                 self.Sec = Main.data.Sec
 
-    def TimeUpdate(self): #타이머 데이터를 GUI에 반영
+    #타이머 데이터를 GUI에 반영
+    def TimeUpdate(self): 
         gui.HLabel.setText(str(int(self.Sec/3600)).zfill(2)) #.zfill : 원하는 개수만큼 '0' 채우기
         gui.MLabel.setText(str(int(self.Sec/60%60)).zfill(2))
         gui.SLabel.setText(str(self.Sec%60).zfill(2))
@@ -76,8 +74,8 @@ def ChangeColor(Break):
         gui.LMarkLabel.setStyleSheet("QLabel {color: #f9c684;}")
         gui.RMarkLabel.setStyleSheet("QLabel {color: #f9c684;}")
 
-
-def StartTimer(): #Timer 생성
+#Timer 생성
+def StartTimer(): 
     global PauseTimer #global : 전역변수인 RunTimer을 사용한다고 선언
     if PauseTimer == True:
         timer = Timer(TimerSec)
@@ -85,7 +83,8 @@ def StartTimer(): #Timer 생성
         timer = Timer(Main.data.Sec)
     threading.Thread(target=timer.CountDown).start()
 
-def ResetTimer(): #초기화
+#초기화
+def ResetTimer(): 
     global TimerSec
     global Break
     global PauseTimer
@@ -104,7 +103,8 @@ def ResetTimer(): #초기화
     gui.MLabel.update()
     gui.SLabel.update()
 
-def CallAlram():#알람 객체 생성
+#알람 객체 생성
+def CallAlram():
     alarm = Alarm.alarm(0, 0)
     alarm.call()
 

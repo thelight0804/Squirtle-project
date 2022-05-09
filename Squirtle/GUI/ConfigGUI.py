@@ -1,9 +1,9 @@
 import Timer, Main
 import FileModule
-from tkinter.messagebox import YES
+
 from PyQt5.QtWidgets import *
-from PyQt5 import uic
-from PyQt5 import QtGui
+from PyQt5 import uic, QtGui
+from PyQt5.QtGui import QIcon
 
 
 #UI파일 연결
@@ -21,6 +21,8 @@ class ConfigGUI(QDialog, form_class) :
     def __init__(self) :
         super().__init__()
         self.setupUi(self) #.ui를 연결 시켜준다
+        self.setWindowTitle('Config')
+        self.setWindowIcon(QIcon('..\Resource\icon\config.png'))
         self.show()
 
         #버튼 이벤트
@@ -52,44 +54,50 @@ class ConfigGUI(QDialog, form_class) :
         self.TermlineEdit.setFixedSize(80,50)
 
         ##기존 값 반영
-        #self.TermlineEdit.setText(str(Term))
         self.TermlineEdit.setText(str(int(Main.data.Term/60))) #Main.data.Sec() 오류!
         self.NamelineEdit.setText(Main.data.Name)
         self.ContentlineEdit.setText(Main.data.Content)
         self.AutoStartcheckBox.setChecked(Main.data.AutoStart)
         self.LangcomboBox.setCurrentIndex(Main.data.Language)
         self.SaveObject()
-    
-    def InfoClicked(self): #정보 버튼 클릭 시
+
+    #정보 버튼 클릭 시
+    def InfoClicked(self): 
+        """
+        1. 기본 String 변수를 선언해 준다
+        2. 각 언어마다 변수의 값을 다르게 지정한다
+        3. 저장된 변수를 출력한다
+        """
         Title = '프로그램 정보'
-        Description = '개발자 : 박상현\n프로그램 버전 : 1.0'
+        Description = "개발자 : 박상현(thelight0804) \n프로그램 버전 : 1.0\nSpecial Thanks : ING'S(Nifskor)"
 
         if(Main.data.Language == 0):
             Title = '프로그램 정보'
-            Description = '개발자 : 박상현\n프로그램 버전 : 1.0'
+            Description = "개발자 : 박상현(thelight0804)\n프로그램 버전 : 1.0\nSpecial Thanks : ING'S(Nifskor)"
         elif(Main.data.Language == 1):
             Title = 'Program Information'
-            Description = 'Developer : thelight0804\nProgram version : 1.0'
+            Description = "Developer : thelight0804\nProgram version : 1.0\nSpecial Thanks : ING'S(Nifskor)"
         else:
             Title = 'プログラム情報'
-            Description = 'プログラマー : thelight0804\nプログラム version : 1.0'
+            Description = "プログラマー : thelight0804\nプログラム version : 1.0\nSpecial Thanks : ING'S(Nifskor)"
         QMessageBox.about(self, Title, Description)
-        
-    def OKClicked(self): #확인 버튼 클릭 시
+
+    #확인 버튼 클릭 시
+    def OKClicked(self): 
         TimerError = '시간을 설정해 주세요'
         Title = '경고'
-        Description = '저장하시겠습니까?'
+        Description = '저장하시겠습니까?\n(언어 변경은 재시작해 주세요)'
         
         #언어 선택 별 언어 변경
         if(self.LangcomboBox.currentIndex() == 0):
             Title = '경고'
-            Description = '저장하시겠습니까?\n언어 변경은 재시작해 주세요'
+            Description = '저장하시겠습니까?\n(언어 변경은 재시작해 주세요)'
         elif(self.LangcomboBox.currentIndex() == 1):
             Title = 'Warning'
-            Description = 'Are you sure you want to save?\nPlease restart the language changePlease restart the language change'
+            Description = 'Are you sure you want to save?\n(Please restart the language changePlease restart the language change)'
         else:
             Title = '注意'
-            Description = 'セーブしますか?\n言語変更はリスタートしてください'
+            Description = 'セーブしますか?\n(言語変更はリスタートしてください)'
 
         if(Main.data.Language == 0):
             TimerError = '시간을 설정해 주세요'
@@ -107,11 +115,13 @@ class ConfigGUI(QDialog, form_class) :
                 Timer.ResetTimer()
                 self.close() #현재 Dialog 닫기
             else: pass
-        
-    def CancelClicked(self): #취소 버튼 클릭 시
+            
+    #취소 버튼 클릭 시
+    def CancelClicked(self): 
         self.close()
 
-    def SaveObject(self): #입력 값 저장
+    #입력 값 저장
+    def SaveObject(self): 
         Main.data.Sec = (int(self.HcomboBox.currentText())*3600)+(int(self.McomboBox.currentText())*60)
         Main.data.Term = int(self.TermlineEdit.text())*60 #lineEdit의 text 반환
         Main.data.Name = self.NamelineEdit.text()

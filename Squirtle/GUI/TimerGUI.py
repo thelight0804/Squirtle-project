@@ -7,7 +7,7 @@ import Timer, Main
 from GUI import ConfigGUI #ConfigGUI import
 
 from PyQt5.QtWidgets import *
-from PyQt5 import QtGui, QtCore, uic
+from PyQt5 import QtGui, QtCore
 from PyQt5.QtGui import QFont
 from PyQt5.QtGui import QIcon
 from PyQt5.QtCore import *
@@ -20,7 +20,7 @@ class TimerGUI(QWidget): #클래스
 
         super().__init__()
         self.setWindowTitle('Squirtle') #프로그램 이름
-        self.setWindowIcon(QIcon('..\Assets\icon\Squirtle.ico')) #프로그램 아이콘
+        self.setWindowIcon(QIcon('..\Resource\icon\Squirtle.ico')) #프로그램 아이콘
         font = QFont('나눔고딕', 15) #폰트 설정
         self.setFont(font)
         self.resize(540, 360) #창 사이즈
@@ -30,21 +30,21 @@ class TimerGUI(QWidget): #클래스
         ##버튼 구현
         #환경설정 버튼
         ConfigBtn = QPushButton('', self) #ConfigBtn 버튼 구현
-        ConfigBtn.setIcon(QtGui.QIcon('..\Assets\icon\config.png')) #아이콘 구현 (상대경로)
+        ConfigBtn.setIcon(QtGui.QIcon('..\Resource\icon\config.png')) #아이콘 구현 (상대경로)
         ConfigBtn.setIconSize(QtCore.QSize(50,50)) #아이콘 크기
         ConfigBtn.setFlat(True) #버튼 테두리 없애기
         ConfigBtn.clicked.connect(self.ConfigBtnClicked) #버튼 클릭 했을 때 ConfigBtn_clicked 함수 호출
 
         #Reset 버튼
         ResetBtn = QPushButton('', self)
-        ResetBtn.setIcon(QtGui.QIcon('..\Assets\icon\\reset.png')) #\r은 옵션이라 \\r를 사용하였다
+        ResetBtn.setIcon(QtGui.QIcon(r'..\Resource\icon\reset.png')) #\r은 옵션이라 \\r를 사용하였다
         ResetBtn.setIconSize(QtCore.QSize(50,50))
         ResetBtn.setFlat(True)
         ResetBtn.clicked.connect(self.ResetBtnCliked)
 
         #Start 버튼
         self.StartBtn = QPushButton('', self)
-        self.StartBtn.setIcon(QtGui.QIcon('..\Assets\icon\start.png'))
+        self.StartBtn.setIcon(QtGui.QIcon('..\Resource\icon\start.png'))
         self.StartBtn.setIconSize(QtCore.QSize(50,50))
         self.StartBtn.setFlat(True)
         self.StartBtn.clicked.connect(self.StartBtnCliked)
@@ -63,10 +63,8 @@ class TimerGUI(QWidget): #클래스
 
         ##QLabel 폰트
         TimerFont = self.HLabel.font()
-
         TimerFont.setPointSize(50)
         TimerFont.setBold(True)
-        #TimerFont.setFamilies(self, "Arial")
 
         self.HLabel.setFont(TimerFont)
         self.MLabel.setFont(TimerFont)
@@ -113,7 +111,6 @@ class TimerGUI(QWidget): #클래스
         self.show() #창 출력
 
     def ConfigBtnClicked(self): #Config 버튼 클릭
-        #second window 열기
         ConfigUI = ConfigGUI.ConfigGUI()
         ConfigUI.exec_() #ConfigUI가 끝나기 전 까지 루프
 
@@ -121,10 +118,10 @@ class TimerGUI(QWidget): #클래스
         if Timer.PauseTimer == False: #정지 상태일 때
             Timer.PauseTimer = True
             Timer.StartTimer() #Timer.StartTimer 호출
-            self.StartBtn.setIcon(QtGui.QIcon('..\Assets\icon\pause.png'))
+            self.StartBtn.setIcon(QtGui.QIcon('..\Resource\icon\pause.png'))
         else: #진행중 일 때
             Timer.PauseTimer = False
-            self.StartBtn.setIcon(QtGui.QIcon('..\Assets\icon\start.png'))
+            self.StartBtn.setIcon(QtGui.QIcon('..\Resource\icon\start.png'))
 
     def ResetBtnCliked(self): #초기화 버튼
         Timer.ResetTimer()
