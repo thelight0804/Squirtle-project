@@ -9,11 +9,11 @@ from PyQt5.QtGui import QIcon
 #UI파일 연결
 #단, UI파일은 Python 코드 파일과 같은 디렉토리에 위치해야한다.
 if(Main.data.Language == 0):
-    form_class = uic.loadUiType(r"GUI\\ConfigGUI_KR.ui")[0]
+    form_class = uic.loadUiType(r"..\Resource\Language\ConfigGUI_KR.ui")[0]
 elif(Main.data.Language == 1):
-    form_class = uic.loadUiType(r"GUI\\ConfigGUI_EN.ui")[0]
+    form_class = uic.loadUiType(r"..\Resource\Language\ConfigGUI_EN.ui")[0]
 else:
-    form_class = uic.loadUiType(r"GUI\\ConfigGUI_JP.ui")[0]
+    form_class = uic.loadUiType(r"..\Resource\Language\ConfigGUI_JP.ui")[0]
 
 
 #화면을 띄우는데 사용되는 Class 선언
