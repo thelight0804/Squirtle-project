@@ -1,5 +1,4 @@
-import Timer, Main
-import FileModule
+import Timer, Main, FileModule
 
 from PyQt5.QtWidgets import *
 from PyQt5 import uic, QtGui
@@ -22,7 +21,7 @@ class ConfigGUI(QDialog, form_class) :
         super().__init__()
         self.setupUi(self) #.ui를 연결 시켜준다
         self.setWindowTitle('Config')
-        self.setWindowIcon(QIcon('..\Resource\icon\config.png'))
+        self.setWindowIcon(QIcon('Resource\config.png'))
         self.show()
 
         #버튼 이벤트

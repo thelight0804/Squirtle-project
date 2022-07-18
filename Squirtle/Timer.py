@@ -1,10 +1,6 @@
 #타이머 기능
 
-import Main
-import Alarm
-
-import sys
-import time, threading #threading 모듈
+import Main, Alarm, time, threading, sys
 
 from PyQt5.QtWidgets import *
 from GUI import TimerGUI

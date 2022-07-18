@@ -12,7 +12,7 @@ class alarm:
     #Windows 10 알람
     def call(self): 
         toast = ToastNotifier() #win10toast의 ToastNotifier 객체 생성
-        toast.show_toast(title=Main.data.Name, msg=Main.data.Content, icon_path="..\Resource\icon\Squirtle.ico")
+        toast.show_toast(title=Main.data.Name, msg=Main.data.Content, icon_path="Resource\Squirtle.ico")
 
     @property
     def AgainHour(self):

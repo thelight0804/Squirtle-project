@@ -1,8 +1,8 @@
 # cmd에서 pip3 install PyQt5 명령어를 이용하여 PyQt5를 설치해야 한다
 #박스 레이아웃 사용 (https://wikidocs.net/21945 참조)
 
-from operator import truediv
-import sys
+# from operator import truediv
+# import sys
 import Timer, Main
 from GUI import ConfigGUI #ConfigGUI import
 
@@ -20,7 +20,7 @@ class TimerGUI(QWidget): #클래스
 
         super().__init__()
         self.setWindowTitle('Squirtle') #프로그램 이름
-        self.setWindowIcon(QIcon('..\Resource\icon\Squirtle.ico')) #프로그램 아이콘
+        self.setWindowIcon(QIcon('Resource\Squirtle.ico')) #프로그램 아이콘
         font = QFont('나눔고딕', 15) #폰트 설정
         self.setFont(font)
         self.resize(540, 360) #창 사이즈
@@ -30,21 +30,21 @@ class TimerGUI(QWidget): #클래스
         ##버튼 구현
         #환경설정 버튼
         ConfigBtn = QPushButton('', self) #ConfigBtn 버튼 구현
-        ConfigBtn.setIcon(QtGui.QIcon('..\Resource\icon\config.png')) #아이콘 구현 (상대경로)
+        ConfigBtn.setIcon(QtGui.QIcon('Resource\config.png')) #아이콘 구현 (상대경로)
         ConfigBtn.setIconSize(QtCore.QSize(50,50)) #아이콘 크기
         ConfigBtn.setFlat(True) #버튼 테두리 없애기
         ConfigBtn.clicked.connect(self.ConfigBtnClicked) #버튼 클릭 했을 때 ConfigBtn_clicked 함수 호출
 
         #Reset 버튼
         ResetBtn = QPushButton('', self)
-        ResetBtn.setIcon(QtGui.QIcon(r'..\Resource\icon\reset.png')) #\r은 옵션이라 \\r를 사용하였다
+        ResetBtn.setIcon(QtGui.QIcon(r'Resource\reset.png')) #\r은 옵션이라 \\r를 사용하였다
         ResetBtn.setIconSize(QtCore.QSize(50,50))
         ResetBtn.setFlat(True)
         ResetBtn.clicked.connect(self.ResetBtnCliked)
 
         #Start 버튼
         self.StartBtn = QPushButton('', self)
-        self.StartBtn.setIcon(QtGui.QIcon('..\Resource\icon\start.png'))
+        self.StartBtn.setIcon(QtGui.QIcon('Resource\start.png'))
         self.StartBtn.setIconSize(QtCore.QSize(50,50))
         self.StartBtn.setFlat(True)
         self.StartBtn.clicked.connect(self.StartBtnCliked)
@@ -118,10 +118,10 @@ class TimerGUI(QWidget): #클래스
         if Timer.PauseTimer == False: #정지 상태일 때
             Timer.PauseTimer = True
             Timer.StartTimer() #Timer.StartTimer 호출
-            self.StartBtn.setIcon(QtGui.QIcon('..\Resource\icon\pause.png'))
+            self.StartBtn.setIcon(QtGui.QIcon('Resource\pause.png'))
         else: #진행중 일 때
             Timer.PauseTimer = False
-            self.StartBtn.setIcon(QtGui.QIcon('..\Resource\icon\start.png'))
+            self.StartBtn.setIcon(QtGui.QIcon('Resource\start.png'))
 
     def ResetBtnCliked(self): #초기화 버튼
         Timer.ResetTimer()
