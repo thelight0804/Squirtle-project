@@ -30,7 +30,7 @@ class Timer:
         ChangeColor(Break)
         self.TimeUpdate()
         while self.Sec > 0:
-            time.sleep(1) #TODO 시간 조정
+            time.sleep(0.01)
             if PauseTimer == False: #일시정지
                 TimerSec = self.Sec
                 self.TimeUpdate()

@@ -376,17 +376,17 @@
             </property>
             <item>
              <property name="text">
-              <string>한국어</string>
+              <string>韓国語</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string>영어</string>
+              <string>英語</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string>일본어</string>
+              <string>日本語</string>
              </property>
             </item>
            </widget>

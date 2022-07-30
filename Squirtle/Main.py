@@ -1,5 +1,6 @@
 """
 Date : 22.02.01 ~ 22.05.09
+Last Update : 22.07.18
 Title : Squirtle (꼬부기)
 
 @thelight0804

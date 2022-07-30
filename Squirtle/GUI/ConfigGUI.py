@@ -62,11 +62,6 @@ class ConfigGUI(QDialog, form_class) :
 
     #정보 버튼 클릭 시
     def InfoClicked(self): 
-        """
-        1. 기본 String 변수를 선언해 준다
-        2. 각 언어마다 변수의 값을 다르게 지정한다
-        3. 저장된 변수를 출력한다
-        """
         Title = '프로그램 정보'
         Description = "개발자 : 박상현(thelight0804) \n프로그램 버전 : 1.0\nSpecial Thanks : ING'S(Nifskor)"
 
