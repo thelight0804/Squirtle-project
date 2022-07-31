@@ -40,7 +40,7 @@
         </font>
        </property>
        <property name="title">
-        <string>アラーム設定</string>
+        <string>通知の設定</string>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout" stretch="0,0,0,0">
         <item>
@@ -228,7 +228,7 @@
              <enum>Qt::LeftToRight</enum>
             </property>
             <property name="text">
-             <string>アラーム名</string>
+             <string>通知の名</string>
             </property>
            </widget>
           </item>
@@ -264,7 +264,7 @@
              </font>
             </property>
             <property name="text">
-             <string>アラーム内容</string>
+             <string>通知の内容</string>
             </property>
            </widget>
           </item>
