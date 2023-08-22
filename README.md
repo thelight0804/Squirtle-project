@@ -1,4 +1,4 @@
-# **Squirtle** <a href="https://thelight0804.notion.site/Python-Project-8b62c4996c7949fdb76744557e083546" target="Notion"><img src="https://img.shields.io/badge/Notion-d4d4d4?style=flat-square&logo=Notion&logoColor=black"/></a>
+# **Squirtle** <a href="https://www.notion.so/thelight0804/Squirtle-7ba0fbbdeb44413281dd8271672a3092?pvs=4" target="Notion"><img src="https://img.shields.io/badge/Notion-d4d4d4?style=flat-square&logo=Notion&logoColor=black"/></a>
 <p align="center">
 
 컴퓨터 작업 중 허리 건강을 위해, 사용자가 설정한 시간이 되면 Windows 10 알림을 통해 사용자에게 휴식 시간을 알려주는 프로그램입니다.
